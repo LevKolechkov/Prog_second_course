@@ -33,6 +33,34 @@ const elephant = {
 };
 
 // Создаём список животных
+const readData = callback(error);
+{
+  fs.readFile("listOfAnimals.json", "utf8", (err, data) => {
+    if (err) {
+      console.error(err);
+      callback(err, null);
+      return;
+    }
+
+    try {
+      const jsonData = JSON.parse(data);
+      callback(null, jsonData);
+    } catch (parseError) {
+      console.error(parseError);
+      callback(parseError, null);
+    }
+  });
+}
+
+readData((error, data) => {
+  if (error) {
+    console.error("Error reading the JSON file:", error);
+    return;
+  }
+
+  console.log("Data from the JSON file:", data);
+});
+
 const listOfAnimals = [deer, lion, tiger, elephant];
 
 // Создание файла JSON с именами животных
