@@ -35,7 +35,7 @@ const elephant = {
 const listOfAnimals = [deer, tiger, lion, elephant];
 
 // Создание файла JSON с именами животных
-const fs = require("fs").promises;
+const fs = require("fs");
 
 const saveData = (list) => {
   const finished = (error) => {
@@ -53,30 +53,32 @@ saveData(listOfAnimals);
 
 // Считываем список животных из JSON файла
 
-const readData = async () =>
-  await fs.readFile("Lab1/listOfAnimals.json", "utf8", (err, data) => {
-    if (err) {
-      console.error(err);
-      callback(err, null);
-      return;
-    }
+fs.readFile("./listOfAnimals.json", "utf-8", (error, data) => {
+  const listOfAnimalsFromJSON = JSON.parse(data);
 
-    try {
-      const jsonData = JSON.parse(data);
-      return jsonData;
-    } catch (parseError) {
-      console.error(parseError);
-      return parseError;
+  // Вывод всех данных о хищниках
+  listOfAnimalsFromJSON.forEach((el) => {
+    if (el.typeOfFood === 0) {
+      console.log(
+        `Name of animal: ${el.nameOfAnimal}\n`,
+        `Weight of animal: ${el.weight}\n`,
+        `Weight of eaten food: ${el.weightOfEatenFoodInDay}\n`,
+        `Type of food: ${el.typeOfFood === 0 ? "meat" : "grass"}\n`
+      );
     }
   });
 
-let listOfAnimalsFromJSON;
+  // Поиск и вывод животного с максимальным количеством съеденной пищи
+  let maxWeightOfEatenFood = 0;
+  let animalWithMaxOfEatenFood = {};
 
-readData()
-  .then((jsonData) => {
-    listOfAnimalsFromJSON = jsonData;
-    return;
-  })
-  .catch((error) => console.error(error));
+  listOfAnimalsFromJSON.forEach((el) => {
+    if (el.weightOfEatenFoodInDay / el.weight > maxWeightOfEatenFood) {
+      animalWithMaxOfEatenFood = el;
+    }
+  });
 
-console.log(listOfAnimalsFromJSON);
+  console.log(
+    `Name of animal with max of eaten food is ${animalWithMaxOfEatenFood.nameOfAnimal}`
+  );
+});
