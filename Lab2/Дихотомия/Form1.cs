@@ -32,16 +32,18 @@ namespace Дихотомия
       }
 
       double resultOfDichotomy = Dichotomy(intervalA, intervalB, accuracy);
+      double resultOfMaxGoldenSelection = GoldenSelection(intervalA, intervalB, accuracy);
+      double resultOfMinGoldenReverseSelection = GoldenReverseSelection(intervalA, intervalB, accuracy);
 
-      MessageBox.Show($"Значение функции: {resultOfDichotomy}");
+      MessageBox.Show($"Значение функции: {resultOfDichotomy}\n" + $"Точка минимума {resultOfMaxGoldenSelection}\n" + $"Точка максимума: {resultOfMinGoldenReverseSelection}");
     }
 
-    private double mainFunc(double x)
+    private double MainFunc(double x)
     {
       return (27 - 18 * x + 2 * Math.Pow(x, 2)) * Math.Exp(-x / 3);
     }
     
-    private double mainReverseFunc(double x)
+    private double MainReverseFunc(double x)
     {
       return -((27 - 18 * x + 2 * Math.Pow(x, 2)) * Math.Exp(-x / 3));
     }
@@ -54,7 +56,7 @@ namespace Дихотомия
 
       while (Math.Abs(a - b) > Math.Pow(10, -accuracy))
       {
-        double y1 = mainFunc(a), y2 = mainFunc(b), y3 = mainFunc(c);
+        double y1 = MainFunc(a), y2 = MainFunc(b), y3 = MainFunc(c);
         if (y1 * y3 < 0)
         {
           b = c;
@@ -69,6 +71,60 @@ namespace Дихотомия
       }
 
       return Math.Round(c, accuracy);
+    }
+
+    private double GoldenSelection(double intervalA, double intervalB, int accuracy)
+    {
+      double FI = (1 + Math.Sqrt(5)) / 2;
+
+      double a = intervalA;
+      double b = intervalB;
+      double x1 = b - (b-a) / FI;
+      double x2 = a + (b - a) / FI;
+
+      while(Math.Abs(b - a) > Math.Pow(10, -accuracy))
+      {
+        if (MainFunc(x1) < MainFunc(x2))
+        {
+          b = x2;
+        }
+        else
+        {
+          a = x1;
+        }
+
+        x1 = b - (b - a) / FI;
+        x2 = a + (b - a) / FI;
+      }  
+
+      return Math.Round((a + b) / 2, accuracy);
+    }
+
+    private double GoldenReverseSelection(double intervalA, double intervalB, int accuracy)
+    {
+      double FI = (1 + Math.Sqrt(5)) / 2;
+
+      double a = intervalA;
+      double b = intervalB;
+      double x1 = b - (b - a) / FI;
+      double x2 = a + (b - a) / FI;
+
+      while (Math.Abs(b - a) > Math.Pow(10, -accuracy))
+      {
+        if (MainReverseFunc(x1) < MainReverseFunc(x2))
+        {
+          b = x2;
+        }
+        else
+        {
+          a = x1;
+        }
+
+        x1 = b - (b - a) / FI;
+        x2 = a + (b - a) / FI;
+      }
+
+      return Math.Round((a + b) / 2, accuracy);
     }
   }
 }
