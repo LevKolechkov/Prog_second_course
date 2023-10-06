@@ -28,6 +28,9 @@
     /// </summary>
     private void InitializeComponent()
     {
+      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+      System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+      System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.расToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.очиститьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,7 +41,9 @@
       this.textBoxIntervalB = new System.Windows.Forms.TextBox();
       this.textBoxAccuracy = new System.Windows.Forms.TextBox();
       this.lblAccuracy = new System.Windows.Forms.Label();
+      this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
       this.menuStrip1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
       this.SuspendLayout();
       // 
       // menuStrip1
@@ -64,6 +69,7 @@
       this.очиститьToolStripMenuItem.Name = "очиститьToolStripMenuItem";
       this.очиститьToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
       this.очиститьToolStripMenuItem.Text = "Очистить";
+      this.очиститьToolStripMenuItem.Click += new System.EventHandler(this.очиститьToolStripMenuItem_Click);
       // 
       // label1
       // 
@@ -119,11 +125,31 @@
       this.lblAccuracy.TabIndex = 5;
       this.lblAccuracy.Text = "Точность";
       // 
+      // chart
+      // 
+      chartArea2.Name = "ChartArea1";
+      this.chart.ChartAreas.Add(chartArea2);
+      legend2.Name = "Legend1";
+      this.chart.Legends.Add(legend2);
+      this.chart.Location = new System.Drawing.Point(266, 37);
+      this.chart.Name = "chart";
+      series2.BorderWidth = 3;
+      series2.ChartArea = "ChartArea1";
+      series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+      series2.IsVisibleInLegend = false;
+      series2.Legend = "Legend1";
+      series2.Name = "Series1";
+      this.chart.Series.Add(series2);
+      this.chart.Size = new System.Drawing.Size(442, 326);
+      this.chart.TabIndex = 7;
+      this.chart.Text = "chart";
+      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(800, 450);
+      this.Controls.Add(this.chart);
       this.Controls.Add(this.lblAccuracy);
       this.Controls.Add(this.textBoxAccuracy);
       this.Controls.Add(this.lblIntervalB);
@@ -138,6 +164,7 @@
       this.Load += new System.EventHandler(this.Form1_Load);
       this.menuStrip1.ResumeLayout(false);
       this.menuStrip1.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -155,6 +182,7 @@
     private System.Windows.Forms.TextBox textBoxIntervalB;
     private System.Windows.Forms.TextBox textBoxAccuracy;
     private System.Windows.Forms.Label lblAccuracy;
+    private System.Windows.Forms.DataVisualization.Charting.Chart chart;
   }
 }
 

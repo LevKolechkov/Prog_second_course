@@ -49,6 +49,7 @@ namespace Дихотомия
       double resultOfMaxGoldenSelection = GoldenSelection(intervalA, intervalB, accuracy);
       double resultOfMinGoldenReverseSelection = GoldenReverseSelection(intervalA, intervalB, accuracy);
 
+      CreateChart(intervalA, intervalB);
       MessageBox.Show($"Значение функции: {resultOfDichotomy}\n" + $"Точка минимума {resultOfMaxGoldenSelection}\n" + $"Точка максимума: {resultOfMinGoldenReverseSelection}");
     }
 
@@ -139,6 +140,39 @@ namespace Дихотомия
       }
 
       return Math.Round((a + b) / 2, accuracy);
+    }
+
+    private void CreateChart(double a, double b)
+    {
+      double x = a;
+      double y;
+      double step = 0.01;
+
+      chart.Series[0].Points.Clear();
+
+      chart.ChartAreas[0].AxisX.Crossing = 0;
+
+      if (a - b == 0)
+      {
+        b += 10;
+      }
+
+      while (x <= b)
+      {
+        y = MainFunc(x);
+
+        chart.Series[0].Points.AddXY(x,y);
+        x += step;
+      }
+    }
+
+    private void очиститьToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      textBoxIntervalA.Clear();
+      textBoxIntervalB.Clear();
+      textBoxAccuracy.Clear();
+
+      chart.Series[0].Points.Clear();
     }
   }
 }
