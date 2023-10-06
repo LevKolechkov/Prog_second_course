@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Дихотомия", "Дихотомия.csproj", "{53DAE88E-B2BD-4ED7-8943-A470BBCF0043}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dichotomy", "Dichotomy.csproj", "{63DF15B6-52A8-466C-B208-8D46EA278EE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{53DAE88E-B2BD-4ED7-8943-A470BBCF0043}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{53DAE88E-B2BD-4ED7-8943-A470BBCF0043}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{53DAE88E-B2BD-4ED7-8943-A470BBCF0043}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{53DAE88E-B2BD-4ED7-8943-A470BBCF0043}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63DF15B6-52A8-466C-B208-8D46EA278EE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63DF15B6-52A8-466C-B208-8D46EA278EE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63DF15B6-52A8-466C-B208-8D46EA278EE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63DF15B6-52A8-466C-B208-8D46EA278EE6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {47BD5AF9-51CA-4B2B-901E-713B781B7A4C}
+		SolutionGuid = {D4167DA2-15DB-4859-A67E-625A304B3493}
 	EndGlobalSection
 EndGlobal
