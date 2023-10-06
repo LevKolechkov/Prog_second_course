@@ -28,21 +28,133 @@
     /// </summary>
     private void InitializeComponent()
     {
+      this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+      this.расToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.очиститьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.label1 = new System.Windows.Forms.Label();
+      this.textBoxIntervalA = new System.Windows.Forms.TextBox();
+      this.lblIntervalA = new System.Windows.Forms.Label();
+      this.lblIntervalB = new System.Windows.Forms.Label();
+      this.textBoxIntervalB = new System.Windows.Forms.TextBox();
+      this.textBoxAccuracy = new System.Windows.Forms.TextBox();
+      this.lblAccuracy = new System.Windows.Forms.Label();
+      this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
+      // 
+      // menuStrip1
+      // 
+      this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.расToolStripMenuItem,
+            this.очиститьToolStripMenuItem});
+      this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+      this.menuStrip1.Name = "menuStrip1";
+      this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+      this.menuStrip1.TabIndex = 0;
+      this.menuStrip1.Text = "menuStrip1";
+      // 
+      // расToolStripMenuItem
+      // 
+      this.расToolStripMenuItem.Name = "расToolStripMenuItem";
+      this.расToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
+      this.расToolStripMenuItem.Text = "Рассчитать";
+      this.расToolStripMenuItem.Click += new System.EventHandler(this.расToolStripMenuItem_Click);
+      // 
+      // очиститьToolStripMenuItem
+      // 
+      this.очиститьToolStripMenuItem.Name = "очиститьToolStripMenuItem";
+      this.очиститьToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+      this.очиститьToolStripMenuItem.Text = "Очистить";
+      // 
+      // label1
+      // 
+      this.label1.AutoSize = true;
+      this.label1.Location = new System.Drawing.Point(32, 37);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(150, 26);
+      this.label1.TabIndex = 1;
+      this.label1.Text = "Формула: \r\ny = (27 - 18x + 2x^2) * e^(-x/3)";
+      // 
+      // textBoxIntervalA
+      // 
+      this.textBoxIntervalA.Location = new System.Drawing.Point(35, 106);
+      this.textBoxIntervalA.Name = "textBoxIntervalA";
+      this.textBoxIntervalA.Size = new System.Drawing.Size(147, 20);
+      this.textBoxIntervalA.TabIndex = 2;
+      // 
+      // lblIntervalA
+      // 
+      this.lblIntervalA.Location = new System.Drawing.Point(32, 85);
+      this.lblIntervalA.Name = "lblIntervalA";
+      this.lblIntervalA.Size = new System.Drawing.Size(71, 18);
+      this.lblIntervalA.TabIndex = 0;
+      this.lblIntervalA.Text = "Интервал A";
+      // 
+      // lblIntervalB
+      // 
+      this.lblIntervalB.Location = new System.Drawing.Point(35, 139);
+      this.lblIntervalB.Name = "lblIntervalB";
+      this.lblIntervalB.Size = new System.Drawing.Size(68, 14);
+      this.lblIntervalB.TabIndex = 3;
+      this.lblIntervalB.Text = "Интервал Б";
+      // 
+      // textBoxIntervalB
+      // 
+      this.textBoxIntervalB.Location = new System.Drawing.Point(35, 159);
+      this.textBoxIntervalB.Name = "textBoxIntervalB";
+      this.textBoxIntervalB.Size = new System.Drawing.Size(147, 20);
+      this.textBoxIntervalB.TabIndex = 4;
+      // 
+      // textBoxAccuracy
+      // 
+      this.textBoxAccuracy.Location = new System.Drawing.Point(35, 213);
+      this.textBoxAccuracy.Name = "textBoxAccuracy";
+      this.textBoxAccuracy.Size = new System.Drawing.Size(147, 20);
+      this.textBoxAccuracy.TabIndex = 6;
+      // 
+      // lblAccuracy
+      // 
+      this.lblAccuracy.Location = new System.Drawing.Point(35, 193);
+      this.lblAccuracy.Name = "lblAccuracy";
+      this.lblAccuracy.Size = new System.Drawing.Size(68, 14);
+      this.lblAccuracy.TabIndex = 5;
+      this.lblAccuracy.Text = "Точность";
       // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(800, 450);
+      this.Controls.Add(this.lblAccuracy);
+      this.Controls.Add(this.textBoxAccuracy);
+      this.Controls.Add(this.lblIntervalB);
+      this.Controls.Add(this.textBoxIntervalB);
+      this.Controls.Add(this.lblIntervalA);
+      this.Controls.Add(this.textBoxIntervalA);
+      this.Controls.Add(this.label1);
+      this.Controls.Add(this.menuStrip1);
+      this.MainMenuStrip = this.menuStrip1;
       this.Name = "Form1";
       this.Text = "Form1";
       this.Load += new System.EventHandler(this.Form1_Load);
+      this.menuStrip1.ResumeLayout(false);
+      this.menuStrip1.PerformLayout();
       this.ResumeLayout(false);
+      this.PerformLayout();
 
     }
 
     #endregion
+
+    private System.Windows.Forms.MenuStrip menuStrip1;
+    private System.Windows.Forms.ToolStripMenuItem расToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem очиститьToolStripMenuItem;
+    private System.Windows.Forms.Label label1;
+    private System.Windows.Forms.TextBox textBoxIntervalA;
+    private System.Windows.Forms.Label lblIntervalA;
+    private System.Windows.Forms.Label lblIntervalB;
+    private System.Windows.Forms.TextBox textBoxIntervalB;
+    private System.Windows.Forms.TextBox textBoxAccuracy;
+    private System.Windows.Forms.Label lblAccuracy;
   }
 }
 
