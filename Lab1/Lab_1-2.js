@@ -1,12 +1,3 @@
-class Animal {
-  constructor(jsonParsedObject) {
-    this.nameOfAnimal = jsonParsedObject.nameOfAnimal;
-    this.weight = jsonParsedObject.weight;
-    this.weightOfEatenFoodInDay = jsonParsedObject.weightOfEatenFoodInDay;
-    this.typeOfFood = jsonParsedObject.typeOfFood;
-  }
-}
-
 const deer = {
   nameOfAnimal: "Deer",
   weight: 215,
