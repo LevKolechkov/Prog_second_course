@@ -1,3 +1,5 @@
+using System;
+
 namespace Дихотомия
 {
   public partial class Form1 : Form
@@ -13,17 +15,15 @@ namespace Дихотомия
 
     private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
     {
-      if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+      if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '-')
       {
         e.Handled = true;
       }
     }
-
     private void расToolStripMenuItem_Click(object sender, EventArgs e)
     {
       double intervalA, intervalB;
       int accuracy;
-
       if (!double.TryParse(textBoxIntervalA.Text, out intervalA) || !double.TryParse(textBoxIntervalB.Text, out intervalB) 
         || !int.TryParse(textBoxAccuracy.Text, out accuracy) || intervalA >= intervalB)
       {
