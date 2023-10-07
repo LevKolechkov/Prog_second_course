@@ -38,10 +38,32 @@ namespace Дихотомия
     {
       double intervalA, intervalB;
       int accuracy;
-      if (!double.TryParse(textBoxIntervalA.Text, out intervalA) || !double.TryParse(textBoxIntervalB.Text, out intervalB)
-        || !int.TryParse(textBoxAccuracy.Text, out accuracy) || intervalA >= intervalB)
+
+      //if (!double.TryParse(textBoxIntervalA.Text, out intervalA) || !double.TryParse(textBoxIntervalB.Text, out intervalB)
+      //  || !int.TryParse(textBoxAccuracy.Text, out accuracy) || intervalA >= intervalB)
+      //{
+      //  MessageBox.Show("Ошибка при вводе значений интервала или точности. Повторите попытку ввода.");
+      //  return;
+      //}
+
+      if (!double.TryParse(textBoxIntervalA.Text, out intervalA))
       {
-        MessageBox.Show("Ошибка при вводе значений интервала или точности. Повторите попытку ввода.");
+        IntervalAException ex = new IntervalAException("Ошибка при вводе интервала A");
+        MessageBox.Show(ex.Message);
+        return;
+      }
+
+      if (!double.TryParse(textBoxIntervalB.Text, out intervalB))
+      {
+        IntervalBException ex = new IntervalBException("Ошибка при вводе интервала A");
+        MessageBox.Show(ex.Message);
+        return;
+      }
+
+      if (!int.TryParse(textBoxAccuracy.Text, out accuracy))
+      {
+        AccuracyException ex = new AccuracyException("Ошибка при вводе интервала A");
+        MessageBox.Show(ex.Message);
         return;
       }
 
