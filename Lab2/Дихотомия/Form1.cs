@@ -48,21 +48,36 @@ namespace Дихотомия
 
       if (!double.TryParse(textBoxIntervalA.Text, out intervalA))
       {
-        IntervalAException ex = new IntervalAException("Ошибка при вводе интервала A");
+        IntervalAException ex = new IntervalAException("Неправильный ввод интервала A");
         MessageBox.Show(ex.Message);
         return;
       }
 
+
       if (!double.TryParse(textBoxIntervalB.Text, out intervalB))
       {
-        IntervalBException ex = new IntervalBException("Ошибка при вводе интервала A");
+        IntervalBException ex = new IntervalBException("Неправильный ввод интервала Б");
         MessageBox.Show(ex.Message);
         return;
       }
 
       if (!int.TryParse(textBoxAccuracy.Text, out accuracy))
       {
-        AccuracyException ex = new AccuracyException("Ошибка при вводе интервала A");
+        AccuracyException ex = new AccuracyException("Ошибка при вводе точности. Необходимо ввести число больше или равное нулю.");
+        MessageBox.Show(ex.Message);
+        return;
+      }
+
+      if (intervalA >= intervalB)
+      {
+        IntervalAException ex = new IntervalAException("Начало интервала не может совпадать или быть больше конца интервала");
+        MessageBox.Show(ex.Message);
+        return;
+      }
+
+      if (intervalB <= intervalA)
+      {
+        IntervalBException ex = new IntervalBException("Конец интервала не может совпадать или быть меньше начала интервала");
         MessageBox.Show(ex.Message);
         return;
       }
@@ -90,8 +105,8 @@ namespace Дихотомия
       double a = intervalA;
       double b = intervalB;
       double c = (a + b) / 2;
-
-      while (Math.Abs(a - b) > Math.Pow(10, -accuracy))
+        
+      while (Math.Abs(b - a) > 2 * Math.Pow(10, -accuracy))
       {
         double y1 = MainFunc(a), y2 = MainFunc(b), y3 = MainFunc(c);
         if (y1 * y3 < 0)
