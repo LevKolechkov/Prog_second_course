@@ -80,15 +80,15 @@ namespace Дихотомия
       }
 
       double resultOfDichotomy = Dichotomy(intervalA, intervalB, accuracy);
-      double resultOfMaxGoldenSelection = GoldenSelection(intervalA, intervalB, accuracy);
-      double resultOfMinGoldenReverseSelection = GoldenReverseSelection(intervalA, intervalB, accuracy);
+      double resultOfMinGoldenSelection = GoldenSelection(intervalA, intervalB, accuracy);
+      double resultOfMaxGoldenReverseSelection = GoldenReverseSelection(intervalA, intervalB, accuracy);
 
       CreateChart(intervalA, intervalB);
       string messageOfDichotomy = double.IsNaN(resultOfDichotomy) ? "Нет пересечения с осью OX" : $"Значение функции: {resultOfDichotomy}";
-      string messageOfMaxGoldenSelection = $"Точка минимума {resultOfMaxGoldenSelection}";
-      string messageOfMinGoldenReverseSelection = $"Точка максимума {resultOfMinGoldenReverseSelection}";
+      string messageOfMinGoldenSelection = $"Точка минимума {resultOfMinGoldenSelection}";
+      string messageOfMaxGoldenReverseSelection = $"Точка максимума {resultOfMaxGoldenReverseSelection}";
 
-      MessageBox.Show(messageOfDichotomy + '\n' + messageOfMaxGoldenSelection + '\n' + messageOfMinGoldenReverseSelection);
+      MessageBox.Show(messageOfDichotomy + '\n' + messageOfMinGoldenSelection + '\n' + messageOfMaxGoldenReverseSelection);
     }
 
     private double MainFunc(double x)
