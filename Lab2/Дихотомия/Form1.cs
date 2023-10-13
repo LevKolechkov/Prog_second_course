@@ -39,13 +39,6 @@ namespace Дихотомия
       double intervalA, intervalB;
       int accuracy;
 
-      //if (!double.TryParse(textBoxIntervalA.Text, out intervalA) || !double.TryParse(textBoxIntervalB.Text, out intervalB)
-      //  || !int.TryParse(textBoxAccuracy.Text, out accuracy) || intervalA >= intervalB)
-      //{
-      //  MessageBox.Show("Ошибка при вводе значений интервала или точности. Повторите попытку ввода.");
-      //  return;
-      //}
-
       if (!double.TryParse(textBoxIntervalA.Text, out intervalA))
       {
         IntervalAException ex = new IntervalAException("Неправильный ввод интервала A");
@@ -63,8 +56,12 @@ namespace Дихотомия
 
       if (!int.TryParse(textBoxAccuracy.Text, out accuracy))
       {
-        AccuracyException ex = new AccuracyException("Ошибка при вводе точности. Необходимо ввести число больше или равное нулю.");
-        MessageBox.Show(ex.Message);
+        MessageBox.Show(new AccuracyException("Ошибка при вводе точности. Необходимо ввести число").Message);
+        return;
+      }
+      else if (accuracy < 0 || accuracy >= 15)
+      {
+        MessageBox.Show(new AccuracyException("Точность должна быть задана в интервале от 0 до 14").Message);
         return;
       }
 
@@ -87,7 +84,11 @@ namespace Дихотомия
       double resultOfMinGoldenReverseSelection = GoldenReverseSelection(intervalA, intervalB, accuracy);
 
       CreateChart(intervalA, intervalB);
-      MessageBox.Show($"Значение функции: {resultOfDichotomy}\n" + $"Точка минимума {resultOfMaxGoldenSelection}\n" + $"Точка максимума: {resultOfMinGoldenReverseSelection}");
+      string messageOfDichotomy = double.IsNaN(resultOfDichotomy) ? "Нет пересечения с осью OX" : $"Значение функции: {resultOfDichotomy}";
+      string messageOfMaxGoldenSelection = $"Точка минимума {resultOfMaxGoldenSelection}";
+      string messageOfMinGoldenReverseSelection = $"Точка максимума {resultOfMinGoldenReverseSelection}";
+
+      MessageBox.Show(messageOfDichotomy + '\n' + messageOfMaxGoldenSelection + '\n' + messageOfMinGoldenReverseSelection);
     }
 
     private double MainFunc(double x)
@@ -122,7 +123,14 @@ namespace Дихотомия
 
       }
 
-      return Math.Round(c, accuracy);
+      if (Math.Abs(MainFunc(c)) < Math.Pow(10, -accuracy))
+      {
+        return Math.Round(c, accuracy);
+      }
+      else
+      {
+        return double.NaN;
+      }
     }
 
     private double GoldenSelection(double intervalA, double intervalB, int accuracy)
@@ -181,24 +189,13 @@ namespace Дихотомия
 
     private void CreateChart(double a, double b)
     {
-      double x = a;
-      double y;
-      double step = 0.01;
-
-      chart.Series[0].Points.Clear();
-
-      chart.ChartAreas[0].AxisX.Crossing = 0;
-
-      if (a - b == 0)
-      {
-        b += 10;
-      }
-
-      while (x <= b)
+      double intervalA = a, intervalB = b, step = 0.1, x, y;
+      this.chartOfDichotomy.Series[0].Points.Clear();
+      x = a;
+      while(x <= b)
       {
         y = MainFunc(x);
-
-        chart.Series[0].Points.AddXY(x,y);
+        this.chartOfDichotomy.Series[0].Points.AddXY(x, y);
         x += step;
       }
     }
@@ -209,7 +206,7 @@ namespace Дихотомия
       textBoxIntervalB.Clear();
       textBoxAccuracy.Clear();
 
-      chart.Series[0].Points.Clear();
+      chartOfDichotomy.Series[0].Points.Clear();
     }
   }
 }

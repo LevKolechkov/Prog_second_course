@@ -28,9 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-      System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-      System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+      System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.расToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.очиститьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,9 +40,9 @@
       this.textBoxIntervalB = new System.Windows.Forms.TextBox();
       this.textBoxAccuracy = new System.Windows.Forms.TextBox();
       this.lblAccuracy = new System.Windows.Forms.Label();
-      this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+      this.chartOfDichotomy = new System.Windows.Forms.DataVisualization.Charting.Chart();
       this.menuStrip1.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.chartOfDichotomy)).BeginInit();
       this.SuspendLayout();
       // 
       // menuStrip1
@@ -125,31 +124,28 @@
       this.lblAccuracy.TabIndex = 5;
       this.lblAccuracy.Text = "Точность";
       // 
-      // chart
+      // chartOfDichotomy
       // 
-      chartArea2.Name = "ChartArea1";
-      this.chart.ChartAreas.Add(chartArea2);
-      legend2.Name = "Legend1";
-      this.chart.Legends.Add(legend2);
-      this.chart.Location = new System.Drawing.Point(266, 37);
-      this.chart.Name = "chart";
-      series2.BorderWidth = 3;
-      series2.ChartArea = "ChartArea1";
-      series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-      series2.IsVisibleInLegend = false;
-      series2.Legend = "Legend1";
-      series2.Name = "Series1";
-      this.chart.Series.Add(series2);
-      this.chart.Size = new System.Drawing.Size(442, 326);
-      this.chart.TabIndex = 7;
-      this.chart.Text = "chart";
+      chartArea1.Name = "ChartArea1";
+      this.chartOfDichotomy.ChartAreas.Add(chartArea1);
+      this.chartOfDichotomy.Location = new System.Drawing.Point(266, 37);
+      this.chartOfDichotomy.Name = "chartOfDichotomy";
+      series1.BorderWidth = 3;
+      series1.ChartArea = "ChartArea1";
+      series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+      series1.IsVisibleInLegend = false;
+      series1.Name = "Series1";
+      this.chartOfDichotomy.Series.Add(series1);
+      this.chartOfDichotomy.Size = new System.Drawing.Size(442, 326);
+      this.chartOfDichotomy.TabIndex = 7;
+      this.chartOfDichotomy.Text = "chart";
       // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(800, 450);
-      this.Controls.Add(this.chart);
+      this.Controls.Add(this.chartOfDichotomy);
       this.Controls.Add(this.lblAccuracy);
       this.Controls.Add(this.textBoxAccuracy);
       this.Controls.Add(this.lblIntervalB);
@@ -164,7 +160,7 @@
       this.Load += new System.EventHandler(this.Form1_Load);
       this.menuStrip1.ResumeLayout(false);
       this.menuStrip1.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.chartOfDichotomy)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -182,7 +178,7 @@
     private System.Windows.Forms.TextBox textBoxIntervalB;
     private System.Windows.Forms.TextBox textBoxAccuracy;
     private System.Windows.Forms.Label lblAccuracy;
-    private System.Windows.Forms.DataVisualization.Charting.Chart chart;
+    private System.Windows.Forms.DataVisualization.Charting.Chart chartOfDichotomy;
   }
 }
 
