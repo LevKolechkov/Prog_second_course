@@ -101,6 +101,11 @@ namespace Дихотомия
       return -((27 - 18 * x + 2 * Math.Pow(x, 2)) * Math.Exp(-x / 3));
     }
 
+    private double DerivativeOfFunc(double x)
+    {
+      return -((2 * x * x * Math.Exp(-x / 3)) / 3 + 10 * x * Math.Exp(-x / 3) - 27 * Math.Exp(-x / 3));
+    }
+
     private double Dichotomy(double intervalA, double intervalB, int accuracy)
     {
       double a = intervalA;
