@@ -47,88 +47,98 @@
       // 
       // menuStrip1
       // 
+      this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
       this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.расToolStripMenuItem,
             this.очиститьToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+      this.menuStrip1.Size = new System.Drawing.Size(1067, 28);
       this.menuStrip1.TabIndex = 0;
       this.menuStrip1.Text = "menuStrip1";
       // 
       // расToolStripMenuItem
       // 
       this.расToolStripMenuItem.Name = "расToolStripMenuItem";
-      this.расToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
+      this.расToolStripMenuItem.Size = new System.Drawing.Size(98, 24);
       this.расToolStripMenuItem.Text = "Рассчитать";
       this.расToolStripMenuItem.Click += new System.EventHandler(this.расToolStripMenuItem_Click);
       // 
       // очиститьToolStripMenuItem
       // 
       this.очиститьToolStripMenuItem.Name = "очиститьToolStripMenuItem";
-      this.очиститьToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+      this.очиститьToolStripMenuItem.Size = new System.Drawing.Size(87, 24);
       this.очиститьToolStripMenuItem.Text = "Очистить";
       this.очиститьToolStripMenuItem.Click += new System.EventHandler(this.очиститьToolStripMenuItem_Click);
       // 
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(32, 37);
+      this.label1.Location = new System.Drawing.Point(43, 46);
+      this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(150, 26);
+      this.label1.Size = new System.Drawing.Size(174, 32);
       this.label1.TabIndex = 1;
       this.label1.Text = "Формула: \r\ny = (27 - 18x + 2x^2) * e^(-x/3)";
       // 
       // textBoxIntervalA
       // 
-      this.textBoxIntervalA.Location = new System.Drawing.Point(35, 106);
+      this.textBoxIntervalA.Location = new System.Drawing.Point(47, 130);
+      this.textBoxIntervalA.Margin = new System.Windows.Forms.Padding(4);
       this.textBoxIntervalA.Name = "textBoxIntervalA";
-      this.textBoxIntervalA.Size = new System.Drawing.Size(147, 20);
+      this.textBoxIntervalA.Size = new System.Drawing.Size(195, 22);
       this.textBoxIntervalA.TabIndex = 2;
       // 
       // lblIntervalA
       // 
-      this.lblIntervalA.Location = new System.Drawing.Point(32, 85);
+      this.lblIntervalA.Location = new System.Drawing.Point(43, 105);
+      this.lblIntervalA.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.lblIntervalA.Name = "lblIntervalA";
-      this.lblIntervalA.Size = new System.Drawing.Size(71, 18);
+      this.lblIntervalA.Size = new System.Drawing.Size(199, 21);
       this.lblIntervalA.TabIndex = 0;
       this.lblIntervalA.Text = "Интервал A";
       // 
       // lblIntervalB
       // 
-      this.lblIntervalB.Location = new System.Drawing.Point(35, 139);
+      this.lblIntervalB.Location = new System.Drawing.Point(47, 171);
+      this.lblIntervalB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.lblIntervalB.Name = "lblIntervalB";
-      this.lblIntervalB.Size = new System.Drawing.Size(68, 14);
+      this.lblIntervalB.Size = new System.Drawing.Size(195, 21);
       this.lblIntervalB.TabIndex = 3;
       this.lblIntervalB.Text = "Интервал Б";
       // 
       // textBoxIntervalB
       // 
-      this.textBoxIntervalB.Location = new System.Drawing.Point(35, 159);
+      this.textBoxIntervalB.Location = new System.Drawing.Point(47, 196);
+      this.textBoxIntervalB.Margin = new System.Windows.Forms.Padding(4);
       this.textBoxIntervalB.Name = "textBoxIntervalB";
-      this.textBoxIntervalB.Size = new System.Drawing.Size(147, 20);
+      this.textBoxIntervalB.Size = new System.Drawing.Size(195, 22);
       this.textBoxIntervalB.TabIndex = 4;
       // 
       // textBoxAccuracy
       // 
-      this.textBoxAccuracy.Location = new System.Drawing.Point(35, 213);
+      this.textBoxAccuracy.Location = new System.Drawing.Point(46, 284);
+      this.textBoxAccuracy.Margin = new System.Windows.Forms.Padding(4);
       this.textBoxAccuracy.Name = "textBoxAccuracy";
-      this.textBoxAccuracy.Size = new System.Drawing.Size(147, 20);
+      this.textBoxAccuracy.Size = new System.Drawing.Size(195, 22);
       this.textBoxAccuracy.TabIndex = 6;
       // 
       // lblAccuracy
       // 
-      this.lblAccuracy.Location = new System.Drawing.Point(35, 193);
+      this.lblAccuracy.Cursor = System.Windows.Forms.Cursors.Default;
+      this.lblAccuracy.Location = new System.Drawing.Point(47, 238);
+      this.lblAccuracy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.lblAccuracy.Name = "lblAccuracy";
-      this.lblAccuracy.Size = new System.Drawing.Size(68, 14);
+      this.lblAccuracy.Size = new System.Drawing.Size(195, 42);
       this.lblAccuracy.TabIndex = 5;
-      this.lblAccuracy.Text = "Точность";
+      this.lblAccuracy.Text = "Количество знаков после запятой";
       // 
       // chartOfDichotomy
       // 
       chartArea1.Name = "ChartArea1";
       this.chartOfDichotomy.ChartAreas.Add(chartArea1);
-      this.chartOfDichotomy.Location = new System.Drawing.Point(266, 37);
+      this.chartOfDichotomy.Location = new System.Drawing.Point(355, 46);
+      this.chartOfDichotomy.Margin = new System.Windows.Forms.Padding(4);
       this.chartOfDichotomy.Name = "chartOfDichotomy";
       series1.BorderWidth = 3;
       series1.ChartArea = "ChartArea1";
@@ -136,15 +146,15 @@
       series1.IsVisibleInLegend = false;
       series1.Name = "Series1";
       this.chartOfDichotomy.Series.Add(series1);
-      this.chartOfDichotomy.Size = new System.Drawing.Size(442, 326);
+      this.chartOfDichotomy.Size = new System.Drawing.Size(589, 401);
       this.chartOfDichotomy.TabIndex = 7;
       this.chartOfDichotomy.Text = "chart";
       // 
       // Form1
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(800, 450);
+      this.ClientSize = new System.Drawing.Size(1067, 554);
       this.Controls.Add(this.chartOfDichotomy);
       this.Controls.Add(this.lblAccuracy);
       this.Controls.Add(this.textBoxAccuracy);
@@ -155,6 +165,7 @@
       this.Controls.Add(this.label1);
       this.Controls.Add(this.menuStrip1);
       this.MainMenuStrip = this.menuStrip1;
+      this.Margin = new System.Windows.Forms.Padding(4);
       this.Name = "Form1";
       this.Text = "Form1";
       this.Load += new System.EventHandler(this.Form1_Load);

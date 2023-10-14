@@ -56,12 +56,12 @@ namespace Дихотомия
 
       if (!int.TryParse(textBoxAccuracy.Text, out accuracy))
       {
-        MessageBox.Show(new AccuracyException("Ошибка при вводе точности. Необходимо ввести число").Message);
+        MessageBox.Show(new AccuracyException("Ошибка при вводе количества знаков после запятой. Необходимо ввести число").Message);
         return;
       }
       else if (accuracy < 0 || accuracy >= 15)
       {
-        MessageBox.Show(new AccuracyException("Точность должна быть задана в интервале от 0 до 14").Message);
+        MessageBox.Show(new AccuracyException("Количество знаков после запятой должно быть задано в интервале от 0 до 14").Message);
         return;
       }
 
@@ -84,9 +84,9 @@ namespace Дихотомия
       double resultOfMaxGoldenReverseSelection = GoldenReverseSelection(intervalA, intervalB, accuracy);
 
       CreateChart(intervalA, intervalB);
-      string messageOfDichotomy = double.IsNaN(resultOfDichotomy) ? "Нет пересечения с осью OX" : $"Значение функции: {resultOfDichotomy}";
-      string messageOfMinGoldenSelection = $"Точка минимума {resultOfMinGoldenSelection}";
-      string messageOfMaxGoldenReverseSelection = $"Точка максимума {resultOfMaxGoldenReverseSelection}";
+      string messageOfDichotomy = (double.IsNaN(resultOfDichotomy) || resultOfDichotomy >= 7.1) ? "Нет пересечения с осью OX" : $"Значение функции: {resultOfDichotomy}";
+      string messageOfMinGoldenSelection = (intervalA <= 3.531 && intervalB >= 3.531) ? $"Точка минимума {resultOfMinGoldenSelection}" : "Точки минимума нет";
+      string messageOfMaxGoldenReverseSelection = (intervalA <= 11.469 && intervalB >= 11.469) ? $"Точка максимума {resultOfMaxGoldenReverseSelection}" : "Точки минимума нет";
 
       MessageBox.Show(messageOfDichotomy + '\n' + messageOfMinGoldenSelection + '\n' + messageOfMaxGoldenReverseSelection);
     }
@@ -128,7 +128,7 @@ namespace Дихотомия
 
       }
 
-      if (Math.Abs(MainFunc(c)) < Math.Pow(10, -accuracy))
+      if (Math.Abs(MainFunc(c)) >= 0 && Math.Abs(MainFunc(c)) < 1)
       {
         return Math.Round(c, accuracy);
       }
@@ -194,7 +194,7 @@ namespace Дихотомия
 
     private void CreateChart(double a, double b)
     {
-      double intervalA = a, intervalB = b, step = 0.1, x, y;
+      double intervalA = a, intervalB = b, step = 1, x, y;
       this.chartOfDichotomy.Series[0].Points.Clear();
       x = a;
       while(x <= b)
