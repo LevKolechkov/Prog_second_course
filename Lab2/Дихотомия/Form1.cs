@@ -84,21 +84,21 @@ namespace Дихотомия
       double resultOfMaxGoldenReverseSelection = GoldenReverseSelection(intervalA, intervalB, accuracy);
 
       CreateChart(intervalA, intervalB);
-      string messageOfDichotomy = (double.IsNaN(resultOfDichotomy) || resultOfDichotomy >= 7.1) ? "Нет пересечения с осью OX" : $"Значение функции: {resultOfDichotomy}";
+      string messageOfDichotomy = $"Значение y при {resultOfDichotomy} равно {Math.Round(MainFunc(resultOfDichotomy))}";
       string messageOfMinGoldenSelection = (intervalA <= 3.531 && intervalB >= 3.531) ? $"Точка минимума {resultOfMinGoldenSelection}" : "Точки минимума нет";
-      string messageOfMaxGoldenReverseSelection = (intervalA <= 11.469 && intervalB >= 11.469) ? $"Точка максимума {resultOfMaxGoldenReverseSelection}" : "Точки минимума нет";
+      string messageOfMaxGoldenReverseSelection = (intervalA <= 11.469 && intervalB >= 11.469) ? $"Точка максимума {resultOfMaxGoldenReverseSelection}" : "Точки максимума нет";
 
       MessageBox.Show(messageOfDichotomy + '\n' + messageOfMinGoldenSelection + '\n' + messageOfMaxGoldenReverseSelection);
     }
 
     private double MainFunc(double x)
     {
-      return (27 - 18 * x + 2 * Math.Pow(x, 2)) * Math.Exp(-x / 3);
+      return 10 * x + 10;
     }
 
     private double MainReverseFunc(double x)
     {
-      return -((27 - 18 * x + 2 * Math.Pow(x, 2)) * Math.Exp(-x / 3));
+      return -(6 * x + 4);
     }
 
     private double DerivativeOfFunc(double x)
