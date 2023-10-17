@@ -84,7 +84,7 @@ namespace Дихотомия
       double resultOfMaxGoldenReverseSelection = GoldenReverseSelection(intervalA, intervalB, accuracy);
 
       CreateChart(intervalA, intervalB);
-      string messageOfDichotomy = $"Значение y при {resultOfDichotomy} равно {Math.Round(MainFunc(resultOfDichotomy))}";
+      string messageOfDichotomy = double.IsNaN(resultOfDichotomy) ? "Нет корня" : $"Значение y при {resultOfDichotomy} равно {Math.Round(MainFunc(resultOfDichotomy))}";
       string messageOfMinGoldenSelection = (intervalA <= 3.531 && intervalB >= 3.531) ? $"Точка минимума {resultOfMinGoldenSelection}" : "Точки минимума нет";
       string messageOfMaxGoldenReverseSelection = (intervalA <= 11.469 && intervalB >= 11.469) ? $"Точка максимума {resultOfMaxGoldenReverseSelection}" : "Точки максимума нет";
 
