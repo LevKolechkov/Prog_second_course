@@ -80,14 +80,16 @@ namespace Метод_Ньютона
       double numberOfNewton = 0;
 
       string messageOfNewton = double.TryParse(resultOfNewton, out numberOfNewton) == false ? resultOfNewton : $"Корень равен {numberOfNewton}";
+
+      MessageBox.Show(messageOfNewton);
     }
 
     public double MainFunc(double x)
     {
-      return ((27 - 18 * x + 2 * x * x) * Math.Exp(-x/3));
+      return 5 * x + 1;
     }
 
-    public bool IsContinuous(Func<double, double> func, double a, double b, double e)
+    public bool IsFuncContinuous(Func<double, double> func, double a, double b, double e)
     {
       double x = 0;
 
@@ -102,6 +104,42 @@ namespace Метод_Ньютона
         }
       }
       
+      return true; // является непрервывной
+    }
+
+    public bool IsFirstDerivativeContinuoues(Func<double, double> func, double a, double b, double e)
+    {
+      double x = 0;
+
+      for (x = a; x <= b - e; x += e)
+      {
+        double y1 = Differentiate.FirstDerivative(func, x);
+        double y2 = Differentiate.FirstDerivative(func, x + e);
+
+        if (Math.Abs(y2 - y1) > e)
+        {
+          return false; // не является непрерывной
+        }
+      }
+
+      return true; // является непрервывной
+    }
+
+    public bool IsSecondDerivativeContinuoues(Func<double, double> func, double a, double b, double e)
+    {
+      double x = 0;
+
+      for (x = a; x <= b - e; x += e)
+      {
+        double y1 = Differentiate.SecondDerivative(func, x);
+        double y2 = Differentiate.SecondDerivative(func, x + e);
+
+        if (Math.Abs(y2 - y1) > e)
+        {
+          return false; // не является непрерывной
+        }
+      }
+
       return true; // является непрервывной
     }
 
@@ -132,11 +170,25 @@ namespace Метод_Ньютона
 
     public string MethodOfNewton(double a, double b, double e)
     {
-      if (!IsContinuous(MainFunc, a, b, e))
+      if (!IsFuncContinuous(MainFunc, a, b, e))
       {
-        FuncException funException = new FuncException("Функция должна быть непрерывной");
+        FuncException funException = new FuncException("Функция должна быть непрерывной на интервале [a, b]");
         return funException.Message;
       }
+
+      if (!IsFirstDerivativeContinuoues(MainFunc, a, b, e))
+      {
+        DerivativeException firstDerivativeException = new DerivativeException("Первая производная функции должна быть непрерывной на интервале [a, b]");
+        return firstDerivativeException.Message;
+      }
+
+      if(!IsSecondDerivativeContinuoues(MainFunc, a, b, e))
+      {
+        DerivativeException secondDerivativeException = new DerivativeException("Вторая производная функции должна быть непрерывной на интервале [a, b]");
+        return secondDerivativeException.Message;
+      }
+
+      return "0";
     }
 
   }

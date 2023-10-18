@@ -25,4 +25,9 @@ namespace Метод_Ньютона
   {
     public AccuracyException(string message) : base(message) { }
   }
+
+  class DerivativeException : Exception
+  {
+    public DerivativeException(string message) : base(message) { }
+  }
 }
