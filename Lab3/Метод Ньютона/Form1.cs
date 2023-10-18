@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MathNet;
+using MathNet.Numerics;
 using System.Windows.Forms;
 
 namespace Метод_Ньютона
@@ -84,14 +86,15 @@ namespace Метод_Ньютона
     {
       return ((27 - 18 * x + 2 * x * x) * Math.Exp(-x/3));
     }
-    public bool IsContinuous(double a, double b, double e)
+
+    public bool IsContinuous(Func<double, double> func, double a, double b, double e)
     {
       double x = 0;
 
       for (x = a; x <= b - e; x += e)
       {
-        double y1 = MainFunc(x);
-        double y2 = MainFunc(x + e);
+        double y1 = func(x);
+        double y2 = func(x + e);
 
         if (Math.Abs(y2 - y1) > e)
         {
@@ -129,13 +132,11 @@ namespace Метод_Ньютона
 
     public string MethodOfNewton(double a, double b, double e)
     {
-      if (!IsContinuous(a, b, e))
+      if (!IsContinuous(MainFunc, a, b, e))
       {
         FuncException funException = new FuncException("Функция должна быть непрерывной");
         return funException.Message;
       }
-
-
     }
 
   }
