@@ -76,22 +76,30 @@ namespace Метод_Ньютона
         return;
       }
 
+      CreateChart(intervalA, intervalB);
+
       string resultOfNewton = MethodOfNewton(intervalA, intervalB, accuracy);
       double numberOfNewton = 0;
 
-      string messageOfNewton = double.TryParse(resultOfNewton, out numberOfNewton) == false ? resultOfNewton : $"Корень равен {numberOfNewton}";
+      string messageOfNewton = double.TryParse(resultOfNewton, out numberOfNewton) == false ? resultOfNewton : $"Корень равен {Math.Round(numberOfNewton, accuracy)}";
 
       MessageBox.Show(messageOfNewton);
     }
 
     public double MainFunc(double x)
     {
-      return 5 * x + 1;
+      return (27 - 18 * x + 2 * Math.Pow(x, 2)) * Math.Exp(-x/3);
     }
 
-    public bool IsFuncContinuous(Func<double, double> func, double a, double b, double e)
+    public double ReverseMainFunc(double x)
+    {
+      return -MainFunc(x);
+    }
+
+    public bool IsFuncContinuous(Func<double, double> func, double a, double b, double accuracy)
     {
       double x = 0;
+      double e = Math.Pow(10, -accuracy);
 
       for (x = a; x <= b - e; x += e)
       {
@@ -107,9 +115,10 @@ namespace Метод_Ньютона
       return true; // является непрервывной
     }
 
-    public bool IsFirstDerivativeContinuoues(Func<double, double> func, double a, double b, double e)
+    public bool IsFirstDerivativeContinuoues(Func<double, double> func, double a, double b, double accuracy)
     {
       double x = 0;
+      double e = Math.Pow(10, -accuracy);
 
       for (x = a; x <= b - e; x += e)
       {
@@ -125,9 +134,10 @@ namespace Метод_Ньютона
       return true; // является непрервывной
     }
 
-    public bool IsSecondDerivativeContinuoues(Func<double, double> func, double a, double b, double e)
+    public bool IsSecondDerivativeContinuoues(Func<double, double> func, double a, double b, double accuracy)
     {
       double x = 0;
+      double e = Math.Pow(10, -accuracy);
 
       for (x = a; x <= b - e; x += e)
       {
@@ -168,28 +178,178 @@ namespace Метод_Ньютона
     //  }
     //}
 
-    public string MethodOfNewton(double a, double b, double e)
+    public string MethodOfNewton(double a, double b, double accuracy)
     {
-      if (!IsFuncContinuous(MainFunc, a, b, e))
+      double e = Math.Pow(10, -accuracy);
+
+      /*
+      //if (!IsFuncContinuous(MainFunc, a, b, e))
+      //{
+      //  FuncException funContException = new FuncException("Функция должна быть непрерывной на интервале [a, b]");
+      //  return funContException.Message;
+      //}
+
+      //if (!IsFirstDerivativeContinuoues(MainFunc, a, b, e))
+      //{
+      //  DerivativeException firstDerivativeException = new DerivativeException("Первая производная функции должна быть непрерывной на интервале [a, b]");
+      //  return firstDerivativeException.Message;
+      //}
+
+      //if (!IsSecondDerivativeContinuoues(MainFunc, a, b, e))
+      //{
+      //  DerivativeException secondDerivativeException = new DerivativeException("Вторая производная функции должна быть непрерывной на интервале [a, b]");
+      //  return secondDerivativeException.Message;
+      //}
+      */
+
+      for(double x = a; x <= b; x+= e)
       {
-        FuncException funException = new FuncException("Функция должна быть непрерывной на интервале [a, b]");
-        return funException.Message;
+        double valueOfFirstDerivative = Differentiate.FirstDerivative(MainFunc, x);
+        double valueOfSecondDerivative = Differentiate.SecondDerivative(MainFunc, x);
+
+        if (valueOfFirstDerivative == 0)
+        {
+          return new DerivativeException("Первая производная функции не должна обращаться в 0. Используйте другую функцию").Message;
+        }
+        else if (valueOfSecondDerivative == 0)
+        {
+          return new DerivativeException("Вторая производная функции не должна обращаться в 0. Используйте другую функцию").Message;
+        }
       }
 
-      if (!IsFirstDerivativeContinuoues(MainFunc, a, b, e))
+      if (!((MainFunc(a) < 0 && MainFunc(b) > 0) || (MainFunc(a) > 0 && MainFunc(b) < 0)))
       {
-        DerivativeException firstDerivativeException = new DerivativeException("Первая производная функции должна быть непрерывной на интервале [a, b]");
-        return firstDerivativeException.Message;
+        FuncException funSignException = new FuncException("Знак значения функции в точке а, должен отличаться от значения функции в точке б");
+        return funSignException.Message;
       }
 
-      if(!IsSecondDerivativeContinuoues(MainFunc, a, b, e))
+      if (Differentiate.FirstDerivative(MainFunc, a) > 0 && Differentiate.SecondDerivative(MainFunc, b) > 0)
       {
-        DerivativeException secondDerivativeException = new DerivativeException("Вторая производная функции должна быть непрерывной на интервале [a, b]");
-        return secondDerivativeException.Message;
+        double g = b; // g (гамма) - приближённое значение функции
+
+        if (MainFunc(g) < 0)
+        {
+          while (ReverseMainFunc(g) >= e)
+          {
+            double g1 = g - ReverseMainFunc(g) / (Differentiate.FirstDerivative(ReverseMainFunc, g));
+
+            g = g1;
+          }
+        }
+        else
+        {
+          while (MainFunc(g) >= e)
+          {
+            double g1 = g - MainFunc(g) / (Differentiate.FirstDerivative(MainFunc, g));
+
+            g = g1;
+          }
+        }
+
+        return g.ToString();
       }
 
-      return "0";
+      if (Differentiate.FirstDerivative(MainFunc, a) > 0 && Differentiate.SecondDerivative(MainFunc, b) < 0)
+      {
+        double g = a; // g (гамма) - приближённое значение функции
+
+        if (MainFunc(g) < 0)
+        {
+          while (ReverseMainFunc(g) >= e)
+          {
+            double g1 = g - ReverseMainFunc(g) / (Differentiate.FirstDerivative(ReverseMainFunc, g));
+
+            g = g1;
+          }
+        }
+        else
+        {
+          while (MainFunc(g) >= e)
+          {
+            double g1 = g - MainFunc(g) / (Differentiate.FirstDerivative(MainFunc, g));
+
+            g = g1;
+          }
+        }
+
+        return g.ToString();
+      }
+
+      if (Differentiate.FirstDerivative(MainFunc, a) < 0 && Differentiate.SecondDerivative(MainFunc, b) > 0)
+      {
+        double g = a; // g (гамма) - приближённое значение функции
+
+        if (MainFunc(g) < 0)
+        {
+          while (ReverseMainFunc(g) >= e)
+          {
+            double g1 = g - ReverseMainFunc(g) / (Differentiate.FirstDerivative(ReverseMainFunc, g));
+
+            g = g1;
+          }
+        }
+        else
+        {
+          while (MainFunc(g) >= e)
+          {
+            double g1 = g - MainFunc(g) / (Differentiate.FirstDerivative(MainFunc, g));
+
+            g = g1;
+          }
+        }
+
+        return g.ToString();
+      }
+
+      if (Differentiate.FirstDerivative(MainFunc, a) > 0 && Differentiate.SecondDerivative(MainFunc, b) > 0)
+      {
+        double g = b; // g (гамма) - приближённое значение функции
+
+        if (MainFunc(g) < 0)
+        {
+          while (ReverseMainFunc(g) >= e)
+          {
+            double g1 = g - ReverseMainFunc(g) / (Differentiate.FirstDerivative(ReverseMainFunc, g));
+
+            g = g1;
+          }
+        }
+        else
+        {
+          while (MainFunc(g) >= e)
+          {
+            double g1 = g - MainFunc(g) / (Differentiate.FirstDerivative(MainFunc, g));
+
+            g = g1;
+          }
+        }
+
+        return g.ToString();
+      }
+
+      return (new Exception(("Неизвестная ошибка")).Message);
     }
 
+    private void CreateChart(double a, double b)
+    {
+      double intervalA = a, intervalB = b, step = 1, x, y;
+      this.chartOfNewton.Series[0].Points.Clear();
+      x = a;
+      while (x <= b)
+      {
+        y = MainFunc(x);
+        this.chartOfNewton.Series[0].Points.AddXY(x, y);
+        x += step;
+      }
+    }
+
+    private void очиститьToolStripMenuItem_Click_1(object sender, EventArgs e)
+    {
+      textBoxIntervalA.Clear();
+      textBoxIntervalB.Clear();
+      textBoxAccuracy.Clear();
+
+      chartOfNewton.Series[0].Points.Clear();
+    }
   }
 }
