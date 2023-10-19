@@ -28,8 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-      System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+      System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.рассчитатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.очиститьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,6 +68,7 @@
       this.очиститьToolStripMenuItem.Name = "очиститьToolStripMenuItem";
       this.очиститьToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
       this.очиститьToolStripMenuItem.Text = "Очистить";
+      this.очиститьToolStripMenuItem.Click += new System.EventHandler(this.очиститьToolStripMenuItem_Click);
       // 
       // label1
       // 
@@ -128,15 +129,15 @@
       // 
       // chartOfNewton
       // 
-      chartArea2.Name = "ChartArea1";
-      this.chartOfNewton.ChartAreas.Add(chartArea2);
+      chartArea1.Name = "ChartArea1";
+      this.chartOfNewton.ChartAreas.Add(chartArea1);
       this.chartOfNewton.Location = new System.Drawing.Point(308, 37);
       this.chartOfNewton.Name = "chartOfNewton";
-      series2.BorderWidth = 3;
-      series2.ChartArea = "ChartArea1";
-      series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-      series2.Name = "Series1";
-      this.chartOfNewton.Series.Add(series2);
+      series1.BorderWidth = 3;
+      series1.ChartArea = "ChartArea1";
+      series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+      series1.Name = "Series1";
+      this.chartOfNewton.Series.Add(series1);
       this.chartOfNewton.Size = new System.Drawing.Size(396, 319);
       this.chartOfNewton.TabIndex = 8;
       this.chartOfNewton.Text = "chart1";

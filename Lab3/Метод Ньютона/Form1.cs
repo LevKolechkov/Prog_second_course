@@ -343,7 +343,7 @@ namespace Метод_Ньютона
       }
     }
 
-    private void очиститьToolStripMenuItem_Click_1(object sender, EventArgs e)
+    private void очиститьToolStripMenuItem_Click(object sender, EventArgs e)
     {
       textBoxIntervalA.Clear();
       textBoxIntervalB.Clear();
