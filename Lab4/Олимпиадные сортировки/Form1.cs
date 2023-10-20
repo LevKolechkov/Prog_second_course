@@ -69,5 +69,21 @@ namespace Олимпиадные_сортировки
       dataGridViewOfArray.DataSource = dt;
 
     }
+
+    public void рассчитатьToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      int totalChecked = 0;
+
+      List<int> originalList = new List<int>();
+
+      for (int index = 0; index <= dataGridViewOfArray.RowCount; index++)
+      {
+        int value = Convert.ToInt32(dataGridViewOfArray[0, index].Value.ToString());
+
+        originalList.Add(value);
+      }
+
+      
+    }
   }
 }
