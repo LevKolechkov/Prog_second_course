@@ -28,10 +28,9 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-      System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+      System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
       this.dataGridViewOfArray = new System.Windows.Forms.DataGridView();
-      this.Array1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.рассчитатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.очиститьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,17 +47,10 @@
       // dataGridViewOfArray
       // 
       this.dataGridViewOfArray.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-      this.dataGridViewOfArray.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Array1});
       this.dataGridViewOfArray.Location = new System.Drawing.Point(12, 38);
       this.dataGridViewOfArray.Name = "dataGridViewOfArray";
       this.dataGridViewOfArray.Size = new System.Drawing.Size(140, 505);
       this.dataGridViewOfArray.TabIndex = 0;
-      // 
-      // Array1
-      // 
-      this.Array1.HeaderText = "Массив";
-      this.Array1.Name = "Array1";
       // 
       // menuStrip1
       // 
@@ -82,6 +74,7 @@
       this.очиститьToolStripMenuItem.Name = "очиститьToolStripMenuItem";
       this.очиститьToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
       this.очиститьToolStripMenuItem.Text = "Очистить";
+      this.очиститьToolStripMenuItem.Click += new System.EventHandler(this.очиститьToolStripMenuItem_Click);
       // 
       // buttonChooseFile
       // 
@@ -91,6 +84,7 @@
       this.buttonChooseFile.TabIndex = 2;
       this.buttonChooseFile.Text = "Выбрать файл";
       this.buttonChooseFile.UseVisualStyleBackColor = true;
+      this.buttonChooseFile.Click += new System.EventHandler(this.buttonChooseFile_Click);
       // 
       // buttonLoadExcel
       // 
@@ -100,6 +94,7 @@
       this.buttonLoadExcel.TabIndex = 3;
       this.buttonLoadExcel.Text = "Загрузить данные Excel";
       this.buttonLoadExcel.UseVisualStyleBackColor = true;
+      this.buttonLoadExcel.Click += new System.EventHandler(this.buttonLoadExcel_Click);
       // 
       // textBoxWayToFile
       // 
@@ -117,13 +112,13 @@
       // 
       // chartOfSort
       // 
-      chartArea1.Name = "ChartArea1";
-      this.chartOfSort.ChartAreas.Add(chartArea1);
+      chartArea2.Name = "ChartArea1";
+      this.chartOfSort.ChartAreas.Add(chartArea2);
       this.chartOfSort.Location = new System.Drawing.Point(230, 159);
       this.chartOfSort.Name = "chartOfSort";
-      series1.ChartArea = "ChartArea1";
-      series1.Name = "Series1";
-      this.chartOfSort.Series.Add(series1);
+      series2.ChartArea = "ChartArea1";
+      series2.Name = "Series1";
+      this.chartOfSort.Series.Add(series2);
       this.chartOfSort.Size = new System.Drawing.Size(509, 374);
       this.chartOfSort.TabIndex = 6;
       this.chartOfSort.Text = "chart1";
@@ -156,7 +151,6 @@
     #endregion
 
     private System.Windows.Forms.DataGridView dataGridViewOfArray;
-    private System.Windows.Forms.DataGridViewTextBoxColumn Array1;
     private System.Windows.Forms.MenuStrip menuStrip1;
     private System.Windows.Forms.ToolStripMenuItem рассчитатьToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem очиститьToolStripMenuItem;
