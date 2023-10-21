@@ -85,20 +85,20 @@ namespace Дихотомия
 
       CreateChart(intervalA, intervalB);
       string messageOfDichotomy = double.IsNaN(resultOfDichotomy) ? "Нет корня" : $"Значение y при {resultOfDichotomy} равно {Math.Round(MainFunc(resultOfDichotomy))}";
-      string messageOfMinGoldenSelection = (intervalA <= 3.531 && intervalB >= 3.531) ? $"Точка минимума {resultOfMinGoldenSelection}" : "Точки минимума нет";
-      string messageOfMaxGoldenReverseSelection = (intervalA <= 11.469 && intervalB >= 11.469) ? $"Точка максимума {resultOfMaxGoldenReverseSelection}" : "Точки максимума нет";
+      string messageOfMinGoldenSelection = $"Точка минимума {resultOfMinGoldenSelection}";
+      string messageOfMaxGoldenReverseSelection = $"Точка максимума {resultOfMaxGoldenReverseSelection}";
 
       MessageBox.Show(messageOfDichotomy + '\n' + messageOfMinGoldenSelection + '\n' + messageOfMaxGoldenReverseSelection);
     }
 
     private double MainFunc(double x)
     {
-      return 10 * x + 10;
+      return (27 - 18 * x + 2 * Math.Pow(x, 2)) * Math.Exp(-x/3);
     }
 
     private double MainReverseFunc(double x)
     {
-      return -(6 * x + 4);
+      return -MainFunc(x);
     }
 
     private double DerivativeOfFunc(double x)
@@ -112,7 +112,7 @@ namespace Дихотомия
       double b = intervalB;
       double c = (a + b) / 2;
         
-      while (Math.Abs(b - a) > 2 * Math.Pow(10, -accuracy))
+      while (Math.Abs(b - a) / 2 > Math.Pow(10, -accuracy))
       {
         double y1 = MainFunc(a), y2 = MainFunc(b), y3 = MainFunc(c);
         if (y1 * y3 < 0)

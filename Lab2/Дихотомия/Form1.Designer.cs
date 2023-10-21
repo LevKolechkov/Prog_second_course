@@ -28,8 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-      System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+      System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.расToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.очиститьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,14 +60,14 @@
       // расToolStripMenuItem
       // 
       this.расToolStripMenuItem.Name = "расToolStripMenuItem";
-      this.расToolStripMenuItem.Size = new System.Drawing.Size(98, 24);
+      this.расToolStripMenuItem.Size = new System.Drawing.Size(98, 26);
       this.расToolStripMenuItem.Text = "Рассчитать";
       this.расToolStripMenuItem.Click += new System.EventHandler(this.расToolStripMenuItem_Click);
       // 
       // очиститьToolStripMenuItem
       // 
       this.очиститьToolStripMenuItem.Name = "очиститьToolStripMenuItem";
-      this.очиститьToolStripMenuItem.Size = new System.Drawing.Size(87, 24);
+      this.очиститьToolStripMenuItem.Size = new System.Drawing.Size(87, 26);
       this.очиститьToolStripMenuItem.Text = "Очистить";
       this.очиститьToolStripMenuItem.Click += new System.EventHandler(this.очиститьToolStripMenuItem_Click);
       // 
@@ -79,7 +79,7 @@
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(174, 32);
       this.label1.TabIndex = 1;
-      this.label1.Text = "Формула: \r\ny = (27 - 18x + 2x^2) * e^(-x/3)";
+      this.label1.Text = "\r\ny = (27 - 18x + 2x^2) * e^(-x/3)";
       // 
       // textBoxIntervalA
       // 
@@ -126,26 +126,26 @@
       // lblAccuracy
       // 
       this.lblAccuracy.Cursor = System.Windows.Forms.Cursors.Default;
-      this.lblAccuracy.Location = new System.Drawing.Point(47, 238);
+      this.lblAccuracy.Location = new System.Drawing.Point(47, 259);
       this.lblAccuracy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.lblAccuracy.Name = "lblAccuracy";
-      this.lblAccuracy.Size = new System.Drawing.Size(195, 42);
+      this.lblAccuracy.Size = new System.Drawing.Size(195, 21);
       this.lblAccuracy.TabIndex = 5;
-      this.lblAccuracy.Text = "Количество знаков после запятой";
+      this.lblAccuracy.Text = "Точность (Тип Int)";
       // 
       // chartOfDichotomy
       // 
-      chartArea1.Name = "ChartArea1";
-      this.chartOfDichotomy.ChartAreas.Add(chartArea1);
+      chartArea2.Name = "ChartArea1";
+      this.chartOfDichotomy.ChartAreas.Add(chartArea2);
       this.chartOfDichotomy.Location = new System.Drawing.Point(355, 46);
       this.chartOfDichotomy.Margin = new System.Windows.Forms.Padding(4);
       this.chartOfDichotomy.Name = "chartOfDichotomy";
-      series1.BorderWidth = 3;
-      series1.ChartArea = "ChartArea1";
-      series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-      series1.IsVisibleInLegend = false;
-      series1.Name = "Series1";
-      this.chartOfDichotomy.Series.Add(series1);
+      series2.BorderWidth = 3;
+      series2.ChartArea = "ChartArea1";
+      series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+      series2.IsVisibleInLegend = false;
+      series2.Name = "Series1";
+      this.chartOfDichotomy.Series.Add(series2);
       this.chartOfDichotomy.Size = new System.Drawing.Size(589, 401);
       this.chartOfDichotomy.TabIndex = 7;
       this.chartOfDichotomy.Text = "chart";
