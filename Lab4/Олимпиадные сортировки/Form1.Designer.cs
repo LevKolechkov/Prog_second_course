@@ -28,8 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-      System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+      System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
       this.dataGridViewOfArray = new System.Windows.Forms.DataGridView();
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.рассчитатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,6 +44,7 @@
       this.checkBoxShaker = new System.Windows.Forms.CheckBox();
       this.checkBoxFast = new System.Windows.Forms.CheckBox();
       this.checkBoxBOGO = new System.Windows.Forms.CheckBox();
+      this.sortedArrayTextBox = new System.Windows.Forms.TextBox();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOfArray)).BeginInit();
       this.menuStrip1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.chartOfSort)).BeginInit();
@@ -54,6 +55,7 @@
       this.dataGridViewOfArray.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
       this.dataGridViewOfArray.Location = new System.Drawing.Point(12, 38);
       this.dataGridViewOfArray.Name = "dataGridViewOfArray";
+      this.dataGridViewOfArray.ReadOnly = true;
       this.dataGridViewOfArray.Size = new System.Drawing.Size(140, 505);
       this.dataGridViewOfArray.TabIndex = 0;
       // 
@@ -118,14 +120,14 @@
       // 
       // chartOfSort
       // 
-      chartArea2.Name = "ChartArea1";
-      this.chartOfSort.ChartAreas.Add(chartArea2);
-      this.chartOfSort.Location = new System.Drawing.Point(158, 188);
+      chartArea1.Name = "ChartArea1";
+      this.chartOfSort.ChartAreas.Add(chartArea1);
+      this.chartOfSort.Location = new System.Drawing.Point(173, 251);
       this.chartOfSort.Name = "chartOfSort";
-      series2.ChartArea = "ChartArea1";
-      series2.Name = "Series1";
-      this.chartOfSort.Series.Add(series2);
-      this.chartOfSort.Size = new System.Drawing.Size(638, 344);
+      series1.ChartArea = "ChartArea1";
+      series1.Name = "Series1";
+      this.chartOfSort.Series.Add(series1);
+      this.chartOfSort.Size = new System.Drawing.Size(623, 281);
       this.chartOfSort.TabIndex = 6;
       this.chartOfSort.Text = "chart1";
       // 
@@ -179,11 +181,22 @@
       this.checkBoxBOGO.Text = "BOGO";
       this.checkBoxBOGO.UseVisualStyleBackColor = true;
       // 
+      // sortedArrayTextBox
+      // 
+      this.sortedArrayTextBox.Location = new System.Drawing.Point(173, 181);
+      this.sortedArrayTextBox.Multiline = true;
+      this.sortedArrayTextBox.Name = "sortedArrayTextBox";
+      this.sortedArrayTextBox.ReadOnly = true;
+      this.sortedArrayTextBox.Size = new System.Drawing.Size(623, 54);
+      this.sortedArrayTextBox.TabIndex = 12;
+      this.sortedArrayTextBox.Visible = false;
+      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(808, 555);
+      this.Controls.Add(this.sortedArrayTextBox);
       this.Controls.Add(this.checkBoxBOGO);
       this.Controls.Add(this.checkBoxFast);
       this.Controls.Add(this.checkBoxShaker);
@@ -225,6 +238,7 @@
     private System.Windows.Forms.CheckBox checkBoxShaker;
     private System.Windows.Forms.CheckBox checkBoxFast;
     private System.Windows.Forms.CheckBox checkBoxBOGO;
+    private System.Windows.Forms.TextBox sortedArrayTextBox;
   }
 }
 

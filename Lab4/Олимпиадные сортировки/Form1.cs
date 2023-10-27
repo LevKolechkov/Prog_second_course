@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Data.OleDb;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace Олимпиадные_сортировки
 {
@@ -58,15 +60,22 @@ namespace Олимпиадные_сортировки
 
     private void buttonLoadExcel_Click(object sender, EventArgs e)
     {
-      string PathConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + textBoxWayToFile.Text + ";Extended Properties='Excel 12.0;IMEX=1;'";
-      OleDbConnection conn = new OleDbConnection(PathConn);
+      try
+      {
+        string PathConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + textBoxWayToFile.Text + ";Extended Properties='Excel 12.0;IMEX=1;'";
+        OleDbConnection conn = new OleDbConnection(PathConn);
 
-      OleDbDataAdapter myDataAdapter = new OleDbDataAdapter("Select * from [" + textBoxNameOfSheet.Text + "$]", conn);
-      DataTable dt = new DataTable();
+        OleDbDataAdapter myDataAdapter = new OleDbDataAdapter("Select * from [" + textBoxNameOfSheet.Text + "$]", conn);
+        DataTable dt = new DataTable();
 
-      myDataAdapter.Fill(dt);
+        myDataAdapter.Fill(dt);
 
-      dataGridViewOfArray.DataSource = dt;
+        dataGridViewOfArray.DataSource = dt;
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Данной таблицы или листа не существует");
+      }
 
     }
 
@@ -74,16 +83,90 @@ namespace Олимпиадные_сортировки
     {
       int totalChecked = 0;
 
-      List<int> originalList = new List<int>();
+      List<double> originalList = new List<double>();
 
-      for (int index = 0; index <= dataGridViewOfArray.RowCount; index++)
+      try
       {
-        int value = Convert.ToInt32(dataGridViewOfArray[0, index].Value.ToString());
+        for (int index = 0; index < dataGridViewOfArray.RowCount; ++index)
+        {
+          double value = 0;
 
-        originalList.Add(value);
+          value = Convert.ToDouble(dataGridViewOfArray[0, index].Value.ToString());
+
+          originalList.Add(value);
+        }
+      }
+      catch (FormatException forEx)
+      {
+        MessageBox.Show("Не все элементы масссива являются числами");
+      }
+      
+      // Сортировка пузырьком
+      List<double> bubbleSortList = new List<double>();
+      Stopwatch bubbleStopWatch = new Stopwatch();
+      if (checkBoxBubble.Checked)
+      {
+        bubbleSortList.AddRange(originalList);
+        bubbleStopWatch.Start();
+
+        bool swapped;
+        do
+        {
+          swapped = false;
+          for (int index = 1; index < bubbleSortList.Count; ++index)
+          {
+            if (bubbleSortList[index - 1] > bubbleSortList[index])
+            {
+              double temporaryValue = bubbleSortList[index - 1];
+              bubbleSortList[index - 1] = bubbleSortList[index];
+              bubbleSortList[index] = temporaryValue;
+              swapped = true;
+            }
+          }
+        } while (swapped);
+        bubbleStopWatch.Stop();
+
+        sortedArrayTextBox.Clear();
+        sortedArrayTextBox.Visible = true;
+        for (int index = 0; index < bubbleSortList.Count; ++index)
+        {
+          sortedArrayTextBox.Text += bubbleSortList[index];
+          sortedArrayTextBox.Text += " ";
+        }
       }
 
-      
+      // Сортировка вставками
+      List<double> insertSortList = new List<double>();
+      Stopwatch insertStopWatch = new Stopwatch();
+      if (checkBoxInsert.Checked)
+      {
+        insertSortList.AddRange(originalList);
+        insertStopWatch.Start();
+
+        for (int index = 1; index < insertSortList.Count; ++index)
+        {
+          double currentElement = insertSortList[index];
+          int lastIndex = index - 1;
+
+          while (lastIndex >= 0 && insertSortList[lastIndex] > currentElement)
+          {
+            insertSortList[lastIndex + 1] = insertSortList[lastIndex];
+            --lastIndex;
+          }
+
+          insertSortList[lastIndex + 1] = currentElement;
+        }
+        insertStopWatch.Stop();
+
+        sortedArrayTextBox.Clear();
+        sortedArrayTextBox.Visible = true;
+        for (int index = 0; index < insertSortList.Count; ++index)
+        {
+          sortedArrayTextBox.Text += insertSortList[index];
+          sortedArrayTextBox.Text += " ";
+        }
+      }
+
     }
   }
 }
