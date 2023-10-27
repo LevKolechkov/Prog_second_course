@@ -213,6 +213,71 @@ namespace Олимпиадные_сортировки
         }
       }
 
+      // Быстрая сортировка
+      List<double> fastSortList = new List<double>();
+      Stopwatch fastStopWatch = new Stopwatch();
+      if (checkBoxFast.Checked)
+      { 
+        fastSortList.AddRange(originalList);
+        fastStopWatch.Start();
+        QuickSort(fastSortList, 0, fastSortList.Count - 1);
+        fastStopWatch.Stop();
+
+        sortedArrayTextBox.Clear();
+        sortedArrayTextBox.Visible = true;
+        for (int index = 0; index < fastSortList.Count; ++index)
+        {
+          sortedArrayTextBox.Text += fastSortList[index];
+          sortedArrayTextBox.Text += " ";
+        }
+      }
+
+      // BOGO сортировка
+      List<double> bogoSortList = new List<double>();
+      Stopwatch bogoStopWatch = new Stopwatch();
+      if (checkBoxBOGO.Checked)
+      {
+
+      }
+    }
+
+    private static void QuickSort(List<double> list, int left, int right)
+    {
+      if (left < right)
+      {
+        int pivotIndex = Partition(list, left, right);
+
+        if (pivotIndex > 1)
+        {
+          QuickSort(list, left, pivotIndex - 1);
+        }
+
+        if (pivotIndex + 1 < right)
+        {
+          QuickSort(list, pivotIndex + 1, right);
+        }
+      }
+    }
+
+    private static int Partition(List<double> list, int left, int right)
+    {
+      double pivot = list[left];
+      while(true)
+      {
+        while (list[left] < pivot) ++left;
+        while (list[right] > pivot) --right;
+
+        if (left < right)
+        {
+          double temp = list[left];
+          list[left] = list[right];
+          list[right] = temp;
+        }
+        else
+        {
+          return right;
+        }
+      }
     }
   }
 }
