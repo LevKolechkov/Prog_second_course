@@ -167,6 +167,52 @@ namespace Олимпиадные_сортировки
         }
       }
 
+      // Сортировка шейкером
+      List<double> shakerSortList = new List<double>();
+      Stopwatch shakerStopWatch = new Stopwatch();
+      if (checkBoxShaker.Checked) 
+      {
+        shakerSortList.AddRange(originalList);
+        shakerStopWatch.Start();
+
+        bool swapped;
+        do
+        {
+          swapped = false;
+          for (int index = 0; index < shakerSortList.Count - 1; ++index)
+          {
+            if (shakerSortList[index] > shakerSortList[index + 1])
+            {
+              double temporaryValue = shakerSortList[index];
+              shakerSortList[index] = shakerSortList[index + 1];
+              shakerSortList[index + 1] = temporaryValue;
+              swapped = true;
+            }
+          }
+          if (!swapped) break;
+          swapped = false;
+          for (int index = shakerSortList.Count - 2; index >= 0; --index)
+          {
+            if (shakerSortList[index] > shakerSortList[index + 1])
+            {
+              double temporaryValue = shakerSortList[index];
+              shakerSortList[index] = shakerSortList[index + 1];
+              shakerSortList[index + 1] = temporaryValue;
+              swapped = true;
+            }
+          }
+        } while (swapped);
+        shakerStopWatch.Stop();
+
+        sortedArrayTextBox.Clear();
+        sortedArrayTextBox.Visible = true;
+        for (int index = 0; index < shakerSortList.Count; ++index)
+        {
+          sortedArrayTextBox.Text += shakerSortList[index];
+          sortedArrayTextBox.Text += " ";
+        }
+      }
+
     }
   }
 }
