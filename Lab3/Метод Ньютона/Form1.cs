@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using MathNet;
 using MathNet.Numerics;
 using System.Windows.Forms;
+using org.mariuszgromada.math.mxparser;
 
 namespace Метод_Ньютона
 {
@@ -21,6 +22,13 @@ namespace Метод_Ньютона
       textBoxIntervalA.KeyPress += TextBox_KeyPress;
       textBoxIntervalB.KeyPress += TextBox_KeyPress;
       textBoxAccuracy.KeyPress += TextBox_KeyPress;
+      //textBoxFunction.Text = "(27 - 18x + 2x^2) * e^(-x/3)";
+      textBoxFunction.Text = "2x ^ 2 + 6 * x + 3";
+    }
+
+    private void Form1_Load(object sender, EventArgs e)
+    {
+      
     }
 
     private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -88,7 +96,9 @@ namespace Метод_Ньютона
 
     public double MainFunc(double x)
     {
-      return (27 - 18 * x + 2 * Math.Pow(x, 2)) * Math.Exp(-x/3);
+      Function function = new Function($"function(x) = {textBoxFunction.Text}");
+      Expression expression = new Expression($"function({x})", function);
+      return expression.calculate();
     }
 
     public double ReverseMainFunc(double x)
