@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using MathNet;
 using MathNet.Numerics;
 using System.Windows.Forms;
+using org.matheval;
 
 namespace Метод_Ньютона
 {
@@ -88,7 +89,10 @@ namespace Метод_Ньютона
 
     public double MainFunc(double x)
     {
-      return (27 - 18 * x + 2 * Math.Pow(x, 2)) * Math.Exp(-x / 3);
+      org.matheval.Expression expression = new org.matheval.Expression(textBoxFunction.Text);
+      expression.Bind("x", x);
+      decimal value = expression.Eval<decimal>();
+      return double.Parse(value.ToString());
     }
 
     public double ReverseMainFunc(double x)
@@ -202,20 +206,20 @@ namespace Метод_Ньютона
       //}
       */
 
-      for (double x = a; x <= b; x += e)
-      {
-        double valueOfFirstDerivative = Differentiate.FirstDerivative(MainFunc, x);
-        double valueOfSecondDerivative = Differentiate.SecondDerivative(MainFunc, x);
+      //for (double x = a; x <= b; x += e)
+      //{
+      //  double valueOfFirstDerivative = Differentiate.FirstDerivative(MainFunc, x);
+      //  double valueOfSecondDerivative = Differentiate.SecondDerivative(MainFunc, x);
 
-        if (valueOfFirstDerivative == 0)
-        {
-          return new DerivativeException("Первая производная функции не должна обращаться в 0. Используйте другую функцию").Message;
-        }
-        else if (valueOfSecondDerivative == 0)
-        {
-          return new DerivativeException("Вторая производная функции не должна обращаться в 0. Используйте другую функцию").Message;
-        }
-      }
+      //  if (valueOfFirstDerivative == 0)
+      //  {
+      //    return new DerivativeException("Первая производная функции не должна обращаться в 0. Используйте другую функцию").Message;
+      //  }
+      //  else if (valueOfSecondDerivative == 0)
+      //  {
+      //    return new DerivativeException("Вторая производная функции не должна обращаться в 0. Используйте другую функцию").Message;
+      //  }
+      //}
 
       if (!((MainFunc(a) < 0 && MainFunc(b) > 0) || (MainFunc(a) > 0 && MainFunc(b) < 0)))
       {

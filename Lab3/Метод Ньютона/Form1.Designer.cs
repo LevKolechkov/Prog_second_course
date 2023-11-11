@@ -28,8 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-      System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+      System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.рассчитатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.очиститьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,7 +41,7 @@
       this.textBoxAccuracy = new System.Windows.Forms.TextBox();
       this.label4 = new System.Windows.Forms.Label();
       this.chartOfNewton = new System.Windows.Forms.DataVisualization.Charting.Chart();
-      this.textBox1 = new System.Windows.Forms.TextBox();
+      this.textBoxFunction = new System.Windows.Forms.TextBox();
       this.menuStrip1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.chartOfNewton)).BeginInit();
       this.SuspendLayout();
@@ -138,35 +138,35 @@
       // 
       // chartOfNewton
       // 
-      chartArea7.Name = "ChartArea1";
-      this.chartOfNewton.ChartAreas.Add(chartArea7);
+      chartArea3.Name = "ChartArea1";
+      this.chartOfNewton.ChartAreas.Add(chartArea3);
       this.chartOfNewton.Location = new System.Drawing.Point(411, 46);
       this.chartOfNewton.Margin = new System.Windows.Forms.Padding(4);
       this.chartOfNewton.Name = "chartOfNewton";
-      series7.BorderWidth = 3;
-      series7.ChartArea = "ChartArea1";
-      series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-      series7.Name = "Series1";
-      this.chartOfNewton.Series.Add(series7);
+      series3.BorderWidth = 3;
+      series3.ChartArea = "ChartArea1";
+      series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+      series3.Name = "Series1";
+      this.chartOfNewton.Series.Add(series3);
       this.chartOfNewton.Size = new System.Drawing.Size(528, 393);
       this.chartOfNewton.TabIndex = 8;
       this.chartOfNewton.Text = "chart1";
       // 
-      // textBox1
+      // textBoxFunction
       // 
-      this.textBox1.Location = new System.Drawing.Point(38, 74);
-      this.textBox1.Multiline = true;
-      this.textBox1.Name = "textBox1";
-      this.textBox1.Size = new System.Drawing.Size(196, 31);
-      this.textBox1.TabIndex = 9;
-      this.textBox1.Text = "(27-18x+2x^2)*e^(-x/3)";
+      this.textBoxFunction.Location = new System.Drawing.Point(38, 74);
+      this.textBoxFunction.Multiline = true;
+      this.textBoxFunction.Name = "textBoxFunction";
+      this.textBoxFunction.Size = new System.Drawing.Size(196, 31);
+      this.textBoxFunction.TabIndex = 9;
+      this.textBoxFunction.Text = "(27-18*x+2*x^2)*e^(-x/3)";
       // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1067, 554);
-      this.Controls.Add(this.textBox1);
+      this.Controls.Add(this.textBoxFunction);
       this.Controls.Add(this.chartOfNewton);
       this.Controls.Add(this.textBoxAccuracy);
       this.Controls.Add(this.label4);
@@ -201,7 +201,7 @@
     private System.Windows.Forms.TextBox textBoxAccuracy;
     private System.Windows.Forms.Label label4;
     private System.Windows.Forms.DataVisualization.Charting.Chart chartOfNewton;
-    private System.Windows.Forms.TextBox textBox1;
+    private System.Windows.Forms.TextBox textBoxFunction;
   }
 }
 
