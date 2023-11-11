@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using MathNet;
 using MathNet.Numerics;
 using System.Windows.Forms;
-using org.mariuszgromada.math.mxparser;
 
 namespace Метод_Ньютона
 {
@@ -22,13 +21,6 @@ namespace Метод_Ньютона
       textBoxIntervalA.KeyPress += TextBox_KeyPress;
       textBoxIntervalB.KeyPress += TextBox_KeyPress;
       textBoxAccuracy.KeyPress += TextBox_KeyPress;
-      //textBoxFunction.Text = "(27 - 18x + 2x^2) * e^(-x/3)";
-      textBoxFunction.Text = "2x ^ 2 + 6 * x + 3";
-    }
-
-    private void Form1_Load(object sender, EventArgs e)
-    {
-      
     }
 
     private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -84,7 +76,7 @@ namespace Метод_Ньютона
         return;
       }
 
-      CreateChart(intervalA, intervalB);
+      CreateChart(intervalA, intervalB, accuracy);
 
       string resultOfNewton = MethodOfNewton(intervalA, intervalB, accuracy);
       double numberOfNewton = 0;
@@ -96,9 +88,7 @@ namespace Метод_Ньютона
 
     public double MainFunc(double x)
     {
-      Function function = new Function($"function(x) = {textBoxFunction.Text}");
-      Expression expression = new Expression($"function({x})", function);
-      return expression.calculate();
+      return (27 - 18 * x + 2 * Math.Pow(x, 2)) * Math.Exp(-x / 3);
     }
 
     public double ReverseMainFunc(double x)
@@ -121,7 +111,7 @@ namespace Метод_Ньютона
           return false; // не является непрерывной
         }
       }
-      
+
       return true; // является непрервывной
     }
 
@@ -212,7 +202,7 @@ namespace Метод_Ньютона
       //}
       */
 
-      for(double x = a; x <= b; x+= e)
+      for (double x = a; x <= b; x += e)
       {
         double valueOfFirstDerivative = Differentiate.FirstDerivative(MainFunc, x);
         double valueOfSecondDerivative = Differentiate.SecondDerivative(MainFunc, x);
@@ -340,14 +330,14 @@ namespace Метод_Ньютона
       return (new Exception(("Неизвестная ошибка")).Message);
     }
 
-    private void CreateChart(double a, double b)
+    private void CreateChart(double a, double b, double accuracy)
     {
       double intervalA = a, intervalB = b, step = 1, x, y;
       this.chartOfNewton.Series[0].Points.Clear();
       x = a;
       while (x <= b)
       {
-        y = MainFunc(x);
+        y = Math.Round(MainFunc(x), Byte.Parse(accuracy.ToString()));
         this.chartOfNewton.Series[0].Points.AddXY(x, y);
         x += step;
       }

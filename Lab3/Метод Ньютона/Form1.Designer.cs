@@ -28,8 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-      System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+      System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.рассчитатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.очиститьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,7 +41,7 @@
       this.textBoxAccuracy = new System.Windows.Forms.TextBox();
       this.label4 = new System.Windows.Forms.Label();
       this.chartOfNewton = new System.Windows.Forms.DataVisualization.Charting.Chart();
-      this.textBoxFunction = new System.Windows.Forms.TextBox();
+      this.textBox1 = new System.Windows.Forms.TextBox();
       this.menuStrip1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.chartOfNewton)).BeginInit();
       this.SuspendLayout();
@@ -54,7 +54,7 @@
             this.очиститьToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Size = new System.Drawing.Size(1067, 30);
+      this.menuStrip1.Size = new System.Drawing.Size(1067, 28);
       this.menuStrip1.TabIndex = 0;
       this.menuStrip1.Text = "menuStrip1";
       // 
@@ -75,17 +75,17 @@
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(36, 46);
+      this.label1.Location = new System.Drawing.Point(36, 55);
       this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(129, 32);
+      this.label1.Size = new System.Drawing.Size(64, 16);
       this.label1.TabIndex = 1;
-      this.label1.Text = "Введите функцию \r\n\r\n";
+      this.label1.Text = "Функция";
       // 
       // label2
       // 
       this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(36, 192);
+      this.label2.Location = new System.Drawing.Point(35, 130);
       this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(84, 16);
@@ -94,16 +94,16 @@
       // 
       // textBoxIntervalA
       // 
-      this.textBoxIntervalA.Location = new System.Drawing.Point(40, 225);
-      this.textBoxIntervalA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.textBoxIntervalA.Location = new System.Drawing.Point(39, 163);
+      this.textBoxIntervalA.Margin = new System.Windows.Forms.Padding(4);
       this.textBoxIntervalA.Name = "textBoxIntervalA";
       this.textBoxIntervalA.Size = new System.Drawing.Size(195, 22);
       this.textBoxIntervalA.TabIndex = 3;
       // 
       // textBoxIntervalB
       // 
-      this.textBoxIntervalB.Location = new System.Drawing.Point(40, 311);
-      this.textBoxIntervalB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.textBoxIntervalB.Location = new System.Drawing.Point(39, 249);
+      this.textBoxIntervalB.Margin = new System.Windows.Forms.Padding(4);
       this.textBoxIntervalB.Name = "textBoxIntervalB";
       this.textBoxIntervalB.Size = new System.Drawing.Size(195, 22);
       this.textBoxIntervalB.TabIndex = 5;
@@ -111,7 +111,7 @@
       // label3
       // 
       this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(36, 278);
+      this.label3.Location = new System.Drawing.Point(35, 216);
       this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(84, 16);
@@ -120,8 +120,8 @@
       // 
       // textBoxAccuracy
       // 
-      this.textBoxAccuracy.Location = new System.Drawing.Point(40, 405);
-      this.textBoxAccuracy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.textBoxAccuracy.Location = new System.Drawing.Point(39, 343);
+      this.textBoxAccuracy.Margin = new System.Windows.Forms.Padding(4);
       this.textBoxAccuracy.Name = "textBoxAccuracy";
       this.textBoxAccuracy.Size = new System.Drawing.Size(195, 22);
       this.textBoxAccuracy.TabIndex = 7;
@@ -129,7 +129,7 @@
       // label4
       // 
       this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(36, 371);
+      this.label4.Location = new System.Drawing.Point(35, 309);
       this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label4.Name = "label4";
       this.label4.Size = new System.Drawing.Size(69, 16);
@@ -138,34 +138,35 @@
       // 
       // chartOfNewton
       // 
-      chartArea2.Name = "ChartArea1";
-      this.chartOfNewton.ChartAreas.Add(chartArea2);
+      chartArea7.Name = "ChartArea1";
+      this.chartOfNewton.ChartAreas.Add(chartArea7);
       this.chartOfNewton.Location = new System.Drawing.Point(411, 46);
-      this.chartOfNewton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.chartOfNewton.Margin = new System.Windows.Forms.Padding(4);
       this.chartOfNewton.Name = "chartOfNewton";
-      series2.BorderWidth = 3;
-      series2.ChartArea = "ChartArea1";
-      series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-      series2.Name = "Series1";
-      this.chartOfNewton.Series.Add(series2);
+      series7.BorderWidth = 3;
+      series7.ChartArea = "ChartArea1";
+      series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+      series7.Name = "Series1";
+      this.chartOfNewton.Series.Add(series7);
       this.chartOfNewton.Size = new System.Drawing.Size(528, 393);
       this.chartOfNewton.TabIndex = 8;
       this.chartOfNewton.Text = "chart1";
       // 
-      // textBoxFunction
+      // textBox1
       // 
-      this.textBoxFunction.Location = new System.Drawing.Point(40, 91);
-      this.textBoxFunction.Multiline = true;
-      this.textBoxFunction.Name = "textBoxFunction";
-      this.textBoxFunction.Size = new System.Drawing.Size(195, 87);
-      this.textBoxFunction.TabIndex = 9;
+      this.textBox1.Location = new System.Drawing.Point(38, 74);
+      this.textBox1.Multiline = true;
+      this.textBox1.Name = "textBox1";
+      this.textBox1.Size = new System.Drawing.Size(196, 31);
+      this.textBox1.TabIndex = 9;
+      this.textBox1.Text = "(27-18x+2x^2)*e^(-x/3)";
       // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1067, 554);
-      this.Controls.Add(this.textBoxFunction);
+      this.Controls.Add(this.textBox1);
       this.Controls.Add(this.chartOfNewton);
       this.Controls.Add(this.textBoxAccuracy);
       this.Controls.Add(this.label4);
@@ -176,7 +177,7 @@
       this.Controls.Add(this.label1);
       this.Controls.Add(this.menuStrip1);
       this.MainMenuStrip = this.menuStrip1;
-      this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.Margin = new System.Windows.Forms.Padding(4);
       this.Name = "Form1";
       this.Text = "Form1";
       this.menuStrip1.ResumeLayout(false);
@@ -200,7 +201,7 @@
     private System.Windows.Forms.TextBox textBoxAccuracy;
     private System.Windows.Forms.Label label4;
     private System.Windows.Forms.DataVisualization.Charting.Chart chartOfNewton;
-    private System.Windows.Forms.TextBox textBoxFunction;
+    private System.Windows.Forms.TextBox textBox1;
   }
 }
 
