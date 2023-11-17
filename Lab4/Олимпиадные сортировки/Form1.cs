@@ -56,7 +56,11 @@ namespace Олимпиадные_сортировки
       textBoxNameOfSheet.Clear();
       sortedArrayTextBox.Clear();
 
-      chartOfSort.Series[0].Points.Clear();
+      chart1.Series[0].Points.Clear();
+      chart1.Series[1].Points.Clear();
+      chart1.Series[2].Points.Clear();
+      chart1.Series[3].Points.Clear();
+      chart1.Series[4].Points.Clear();
     }
 
     private void buttonLoadExcel_Click(object sender, EventArgs e)
@@ -82,6 +86,14 @@ namespace Олимпиадные_сортировки
 
     public void рассчитатьToolStripMenuItem_Click(object sender, EventArgs e)
     {
+      sortedArrayTextBox.Clear();
+
+      chart1.Series[0].Points.Clear();
+      chart1.Series[1].Points.Clear();
+      chart1.Series[2].Points.Clear();
+      chart1.Series[3].Points.Clear();
+      chart1.Series[4].Points.Clear();
+
       int totalChecked = 0;
 
       List<double> originalList = new List<double>();
@@ -254,7 +266,13 @@ namespace Олимпиадные_сортировки
           sortedArrayTextBox.Text += fastSortList[index];
           sortedArrayTextBox.Text += " ";
         }
-      }
+      } 
+
+      chart1.Series[0].Points.AddXY(1, (bubbleStopWatch.Elapsed.TotalMilliseconds));
+      chart1.Series[1].Points.AddXY(2, (insertStopWatch.Elapsed.TotalMilliseconds));
+      chart1.Series[2].Points.AddXY(3, (fastStopWatch.Elapsed.TotalMilliseconds));
+      chart1.Series[3].Points.AddXY(4, (shakerStopWatch.Elapsed.TotalMilliseconds));
+      chart1.Series[4].Points.AddXY(5, (bogoStopWatch.Elapsed.TotalMilliseconds));
     }
 
     static bool IsCorrect (List<double> array, int size)

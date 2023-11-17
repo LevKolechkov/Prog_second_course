@@ -29,7 +29,12 @@
     private void InitializeComponent()
     {
       System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+      System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
       System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
       this.dataGridViewOfArray = new System.Windows.Forms.DataGridView();
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.рассчитатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,16 +43,16 @@
       this.buttonLoadExcel = new System.Windows.Forms.Button();
       this.textBoxWayToFile = new System.Windows.Forms.TextBox();
       this.textBoxNameOfSheet = new System.Windows.Forms.TextBox();
-      this.chartOfSort = new System.Windows.Forms.DataVisualization.Charting.Chart();
       this.checkBoxBubble = new System.Windows.Forms.CheckBox();
       this.checkBoxInsert = new System.Windows.Forms.CheckBox();
       this.checkBoxShaker = new System.Windows.Forms.CheckBox();
       this.checkBoxFast = new System.Windows.Forms.CheckBox();
       this.checkBoxBOGO = new System.Windows.Forms.CheckBox();
       this.sortedArrayTextBox = new System.Windows.Forms.TextBox();
+      this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOfArray)).BeginInit();
       this.menuStrip1.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.chartOfSort)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
       this.SuspendLayout();
       // 
       // dataGridViewOfArray
@@ -118,19 +123,6 @@
       this.textBoxNameOfSheet.Size = new System.Drawing.Size(512, 20);
       this.textBoxNameOfSheet.TabIndex = 5;
       // 
-      // chartOfSort
-      // 
-      chartArea1.Name = "ChartArea1";
-      this.chartOfSort.ChartAreas.Add(chartArea1);
-      this.chartOfSort.Location = new System.Drawing.Point(173, 251);
-      this.chartOfSort.Name = "chartOfSort";
-      series1.ChartArea = "ChartArea1";
-      series1.Name = "Series1";
-      this.chartOfSort.Series.Add(series1);
-      this.chartOfSort.Size = new System.Drawing.Size(623, 281);
-      this.chartOfSort.TabIndex = 6;
-      this.chartOfSort.Text = "chart1";
-      // 
       // checkBoxBubble
       // 
       this.checkBoxBubble.AutoSize = true;
@@ -191,18 +183,50 @@
       this.sortedArrayTextBox.TabIndex = 12;
       this.sortedArrayTextBox.Visible = false;
       // 
+      // chart1
+      // 
+      chartArea1.Name = "ChartArea1";
+      this.chart1.ChartAreas.Add(chartArea1);
+      legend1.Name = "Legend1";
+      this.chart1.Legends.Add(legend1);
+      this.chart1.Location = new System.Drawing.Point(173, 264);
+      this.chart1.Name = "chart1";
+      series1.ChartArea = "ChartArea1";
+      series1.Legend = "Legend1";
+      series1.Name = "Пузырьком";
+      series2.ChartArea = "ChartArea1";
+      series2.Legend = "Legend1";
+      series2.Name = "Вставками";
+      series3.ChartArea = "ChartArea1";
+      series3.Legend = "Legend1";
+      series3.Name = "Быстрая";
+      series4.ChartArea = "ChartArea1";
+      series4.Legend = "Legend1";
+      series4.Name = "Шейкер";
+      series5.ChartArea = "ChartArea1";
+      series5.Legend = "Legend1";
+      series5.Name = "BOGO";
+      this.chart1.Series.Add(series1);
+      this.chart1.Series.Add(series2);
+      this.chart1.Series.Add(series3);
+      this.chart1.Series.Add(series4);
+      this.chart1.Series.Add(series5);
+      this.chart1.Size = new System.Drawing.Size(623, 279);
+      this.chart1.TabIndex = 13;
+      this.chart1.Text = "chart1";
+      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(808, 555);
+      this.Controls.Add(this.chart1);
       this.Controls.Add(this.sortedArrayTextBox);
       this.Controls.Add(this.checkBoxBOGO);
       this.Controls.Add(this.checkBoxFast);
       this.Controls.Add(this.checkBoxShaker);
       this.Controls.Add(this.checkBoxInsert);
       this.Controls.Add(this.checkBoxBubble);
-      this.Controls.Add(this.chartOfSort);
       this.Controls.Add(this.textBoxNameOfSheet);
       this.Controls.Add(this.textBoxWayToFile);
       this.Controls.Add(this.buttonLoadExcel);
@@ -216,7 +240,7 @@
       ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOfArray)).EndInit();
       this.menuStrip1.ResumeLayout(false);
       this.menuStrip1.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.chartOfSort)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -232,13 +256,13 @@
     private System.Windows.Forms.Button buttonLoadExcel;
     private System.Windows.Forms.TextBox textBoxWayToFile;
     private System.Windows.Forms.TextBox textBoxNameOfSheet;
-    private System.Windows.Forms.DataVisualization.Charting.Chart chartOfSort;
     private System.Windows.Forms.CheckBox checkBoxBubble;
     private System.Windows.Forms.CheckBox checkBoxInsert;
     private System.Windows.Forms.CheckBox checkBoxShaker;
     private System.Windows.Forms.CheckBox checkBoxFast;
     private System.Windows.Forms.CheckBox checkBoxBOGO;
     private System.Windows.Forms.TextBox sortedArrayTextBox;
+    private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
   }
 }
 
