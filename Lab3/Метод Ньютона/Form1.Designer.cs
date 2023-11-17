@@ -28,8 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-      System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+      System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.рассчитатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.очиститьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,118 +54,113 @@
             this.очиститьToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Size = new System.Drawing.Size(1067, 28);
+      this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+      this.menuStrip1.Size = new System.Drawing.Size(800, 24);
       this.menuStrip1.TabIndex = 0;
       this.menuStrip1.Text = "menuStrip1";
       // 
       // рассчитатьToolStripMenuItem
       // 
       this.рассчитатьToolStripMenuItem.Name = "рассчитатьToolStripMenuItem";
-      this.рассчитатьToolStripMenuItem.Size = new System.Drawing.Size(98, 24);
+      this.рассчитатьToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
       this.рассчитатьToolStripMenuItem.Text = "Рассчитать";
       this.рассчитатьToolStripMenuItem.Click += new System.EventHandler(this.рассчитатьToolStripMenuItem_Click);
       // 
       // очиститьToolStripMenuItem
       // 
       this.очиститьToolStripMenuItem.Name = "очиститьToolStripMenuItem";
-      this.очиститьToolStripMenuItem.Size = new System.Drawing.Size(87, 24);
+      this.очиститьToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
       this.очиститьToolStripMenuItem.Text = "Очистить";
       this.очиститьToolStripMenuItem.Click += new System.EventHandler(this.очиститьToolStripMenuItem_Click);
       // 
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(36, 55);
-      this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+      this.label1.Location = new System.Drawing.Point(27, 45);
       this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(64, 16);
+      this.label1.Size = new System.Drawing.Size(53, 13);
       this.label1.TabIndex = 1;
       this.label1.Text = "Функция";
       // 
       // label2
       // 
       this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(35, 130);
-      this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+      this.label2.Location = new System.Drawing.Point(26, 106);
       this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(84, 16);
+      this.label2.Size = new System.Drawing.Size(66, 13);
       this.label2.TabIndex = 2;
       this.label2.Text = "Интервал А";
       // 
       // textBoxIntervalA
       // 
-      this.textBoxIntervalA.Location = new System.Drawing.Point(39, 163);
-      this.textBoxIntervalA.Margin = new System.Windows.Forms.Padding(4);
+      this.textBoxIntervalA.Location = new System.Drawing.Point(29, 132);
       this.textBoxIntervalA.Name = "textBoxIntervalA";
-      this.textBoxIntervalA.Size = new System.Drawing.Size(195, 22);
+      this.textBoxIntervalA.Size = new System.Drawing.Size(147, 20);
       this.textBoxIntervalA.TabIndex = 3;
       // 
       // textBoxIntervalB
       // 
-      this.textBoxIntervalB.Location = new System.Drawing.Point(39, 249);
-      this.textBoxIntervalB.Margin = new System.Windows.Forms.Padding(4);
+      this.textBoxIntervalB.Location = new System.Drawing.Point(29, 202);
       this.textBoxIntervalB.Name = "textBoxIntervalB";
-      this.textBoxIntervalB.Size = new System.Drawing.Size(195, 22);
+      this.textBoxIntervalB.Size = new System.Drawing.Size(147, 20);
       this.textBoxIntervalB.TabIndex = 5;
       // 
       // label3
       // 
       this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(35, 216);
-      this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+      this.label3.Location = new System.Drawing.Point(26, 176);
       this.label3.Name = "label3";
-      this.label3.Size = new System.Drawing.Size(84, 16);
+      this.label3.Size = new System.Drawing.Size(66, 13);
       this.label3.TabIndex = 4;
       this.label3.Text = "Интервал Б";
       // 
       // textBoxAccuracy
       // 
-      this.textBoxAccuracy.Location = new System.Drawing.Point(39, 343);
-      this.textBoxAccuracy.Margin = new System.Windows.Forms.Padding(4);
+      this.textBoxAccuracy.Location = new System.Drawing.Point(29, 279);
       this.textBoxAccuracy.Name = "textBoxAccuracy";
-      this.textBoxAccuracy.Size = new System.Drawing.Size(195, 22);
+      this.textBoxAccuracy.Size = new System.Drawing.Size(147, 20);
       this.textBoxAccuracy.TabIndex = 7;
       // 
       // label4
       // 
       this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(35, 309);
-      this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+      this.label4.Location = new System.Drawing.Point(26, 251);
       this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(69, 16);
+      this.label4.Size = new System.Drawing.Size(54, 13);
       this.label4.TabIndex = 6;
       this.label4.Text = "Точность";
       // 
       // chartOfNewton
       // 
-      chartArea3.Name = "ChartArea1";
-      this.chartOfNewton.ChartAreas.Add(chartArea3);
-      this.chartOfNewton.Location = new System.Drawing.Point(411, 46);
-      this.chartOfNewton.Margin = new System.Windows.Forms.Padding(4);
+      chartArea1.Name = "ChartArea1";
+      this.chartOfNewton.ChartAreas.Add(chartArea1);
+      this.chartOfNewton.Location = new System.Drawing.Point(308, 37);
       this.chartOfNewton.Name = "chartOfNewton";
-      series3.BorderWidth = 3;
-      series3.ChartArea = "ChartArea1";
-      series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-      series3.Name = "Series1";
-      this.chartOfNewton.Series.Add(series3);
-      this.chartOfNewton.Size = new System.Drawing.Size(528, 393);
+      series1.BorderWidth = 3;
+      series1.ChartArea = "ChartArea1";
+      series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+      series1.Name = "Series1";
+      this.chartOfNewton.Series.Add(series1);
+      this.chartOfNewton.Size = new System.Drawing.Size(396, 319);
       this.chartOfNewton.TabIndex = 8;
       this.chartOfNewton.Text = "chart1";
       // 
       // textBoxFunction
       // 
-      this.textBoxFunction.Location = new System.Drawing.Point(38, 74);
+      this.textBoxFunction.Location = new System.Drawing.Point(28, 60);
+      this.textBoxFunction.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.textBoxFunction.Multiline = true;
       this.textBoxFunction.Name = "textBoxFunction";
-      this.textBoxFunction.Size = new System.Drawing.Size(196, 31);
+      this.textBoxFunction.ReadOnly = true;
+      this.textBoxFunction.Size = new System.Drawing.Size(148, 26);
       this.textBoxFunction.TabIndex = 9;
       this.textBoxFunction.Text = "(27-18*x+2*x^2)*e^(-x/3)";
       // 
       // Form1
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1067, 554);
+      this.ClientSize = new System.Drawing.Size(800, 450);
       this.Controls.Add(this.textBoxFunction);
       this.Controls.Add(this.chartOfNewton);
       this.Controls.Add(this.textBoxAccuracy);
@@ -177,7 +172,6 @@
       this.Controls.Add(this.label1);
       this.Controls.Add(this.menuStrip1);
       this.MainMenuStrip = this.menuStrip1;
-      this.Margin = new System.Windows.Forms.Padding(4);
       this.Name = "Form1";
       this.Text = "Form1";
       this.menuStrip1.ResumeLayout(false);

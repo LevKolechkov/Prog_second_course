@@ -80,19 +80,24 @@ namespace Метод_Ньютона
       CreateChart(intervalA, intervalB, accuracy);
 
       string resultOfNewton = MethodOfNewton(intervalA, intervalB, accuracy);
+      string resultOfGoldenSelection = GoldenSelection(intervalA, intervalB, accuracy).ToString();
+      string resultOfGoldenReverseSelection = GoldenReverseSelection(intervalA, intervalB, accuracy).ToString();
       double numberOfNewton = 0;
 
       string messageOfNewton = double.TryParse(resultOfNewton, out numberOfNewton) == false ? resultOfNewton : $"Корень равен {Math.Round(numberOfNewton, accuracy)}";
+      messageOfNewton += $"\nX в точке минимума: {resultOfGoldenSelection}";
+      messageOfNewton += $"\nX в точке максимума: {resultOfGoldenReverseSelection}";
 
       MessageBox.Show(messageOfNewton);
     }
 
     public double MainFunc(double x)
     {
-      org.matheval.Expression expression = new org.matheval.Expression(textBoxFunction.Text);
-      expression.Bind("x", x);
-      decimal value = expression.Eval<decimal>();
-      return double.Parse(value.ToString());
+      //return (27 - 18 * x + 2 * x * x) * Math.Exp(-x/3);
+      return (27 - 18 * x + 2 * x * x) * Math.Exp(-x / 3);
+      //Expression expression = new Expression(textBoxFunction.Text);
+      //expression.Bind("x", x);
+      //return double.Parse(expression.Eval<decimal>().ToString());
     }
 
     public double ReverseMainFunc(double x)
@@ -157,30 +162,59 @@ namespace Метод_Ньютона
       return true; // является непрервывной
     }
 
-    //public string TypeTextOfError(string textOfException)
-    //{
-    //  double numberFromException = double.Parse(textOfException);
+    private double GoldenSelection(double intervalA, double intervalB, int accuracy)
+    {
+      double FI = (1 + Math.Sqrt(5)) / 2;
 
-    //  switch (numberFromException) 
-    //  {
-    //    case 1:
-    //      return "Ошибка интервала А";
+      double a = intervalA;
+      double b = intervalB;
+      double x1 = b - (b - a) / FI;
+      double x2 = a + (b - a) / FI;
 
-    //    case 2:
-    //      return "Ошибка интервала Б";
+      while (Math.Abs(b - a) > Math.Pow(10, -accuracy))
+      {
+        if (MainFunc(x1) < MainFunc(x2))
+        {
+          b = x2;
+        }
+        else
+        {
+          a = x1;
+        }
 
-    //    case 3:
-    //      return "Ошибка при задании точности";
+        x1 = b - (b - a) / FI;
+        x2 = a + (b - a) / FI;
+      }
 
-    //    case 4:
-    //      return "Ошибка функции";
-    //    case 4.1:
-    //      return "Функция должна быть непрерывной";
+      return Math.Round((a + b) / 2, accuracy);
+    }
 
-    //    default:
-    //      return "Неизвестная ошибка";
-    //  }
-    //}
+    private double GoldenReverseSelection(double intervalA, double intervalB, int accuracy)
+    {
+      double FI = (1 + Math.Sqrt(5)) / 2;
+
+      double a = intervalA;
+      double b = intervalB;
+      double x1 = b - (b - a) / FI;
+      double x2 = a + (b - a) / FI;
+
+      while (Math.Abs(b - a) > Math.Pow(10, -accuracy))
+      {
+        if (ReverseMainFunc(x1) < ReverseMainFunc(x2))
+        {
+          b = x2;
+        }
+        else
+        {
+          a = x1;
+        }
+
+        x1 = b - (b - a) / FI;
+        x2 = a + (b - a) / FI;
+      }
+
+      return Math.Round((a + b) / 2, accuracy);
+    }
 
     public string MethodOfNewton(double a, double b, double accuracy)
     {
@@ -206,24 +240,24 @@ namespace Метод_Ньютона
       //}
       */
 
-      //for (double x = a; x <= b; x += e)
-      //{
-      //  double valueOfFirstDerivative = Differentiate.FirstDerivative(MainFunc, x);
-      //  double valueOfSecondDerivative = Differentiate.SecondDerivative(MainFunc, x);
+      for (double x = a; x <= b; x += Math.Pow(10, -5))
+      {
+        double valueOfFirstDerivative = Differentiate.FirstDerivative(MainFunc, x);
+        double valueOfSecondDerivative = Differentiate.SecondDerivative(MainFunc, x);
 
-      //  if (valueOfFirstDerivative == 0)
-      //  {
-      //    return new DerivativeException("Первая производная функции не должна обращаться в 0. Используйте другую функцию").Message;
-      //  }
-      //  else if (valueOfSecondDerivative == 0)
-      //  {
-      //    return new DerivativeException("Вторая производная функции не должна обращаться в 0. Используйте другую функцию").Message;
-      //  }
-      //}
+        if (valueOfFirstDerivative == 0)
+        {
+          return new DerivativeException("Первая производная функции не должна обращаться в 0. Используйте другую функцию").Message;
+        }
+        else if (valueOfSecondDerivative == 0)
+        {
+          return new DerivativeException("Вторая производная функции не должна обращаться в 0. Используйте другую функцию").Message;
+        }
+      }
 
       if (!((MainFunc(a) < 0 && MainFunc(b) > 0) || (MainFunc(a) > 0 && MainFunc(b) < 0)))
       {
-        FuncException funSignException = new FuncException("Знак значения функции в точке а, должен отличаться от значения функции в точке б");
+        FuncException funSignException = new FuncException("Знак значения функции в точке а, должен отличаться от значения функции в точке б. Попробуйте другой интервал");
         return funSignException.Message;
       }
 
