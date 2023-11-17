@@ -54,6 +54,7 @@ namespace Олимпиадные_сортировки
 
       textBoxWayToFile.Clear();
       textBoxNameOfSheet.Clear();
+      sortedArrayTextBox.Clear();
 
       chartOfSort.Series[0].Points.Clear();
     }
@@ -100,7 +101,30 @@ namespace Олимпиадные_сортировки
       {
         MessageBox.Show("Не все элементы масссива являются числами");
       }
-      
+
+      // BOGO сортировка
+      List<double> bogoSortList = new List<double>();
+      Stopwatch bogoStopWatch = new Stopwatch();
+      if (checkBoxBOGO.Checked)
+      {
+        bogoSortList.AddRange(originalList);
+
+        bogoStopWatch.Start();
+        while (IsCorrect(bogoSortList, bogoSortList.Count))
+        {
+          Shuffle(bogoSortList, bogoSortList.Count);
+        }
+        bogoStopWatch.Stop();
+
+        sortedArrayTextBox.Clear();
+        sortedArrayTextBox.Visible = true;
+        for (int index = 0; index < bogoSortList.Count; ++index)
+        {
+          sortedArrayTextBox.Text += bogoSortList[index];
+          sortedArrayTextBox.Text += " ";
+        }
+      }
+
       // Сортировка пузырьком
       List<double> bubbleSortList = new List<double>();
       Stopwatch bubbleStopWatch = new Stopwatch();
@@ -231,14 +255,84 @@ namespace Олимпиадные_сортировки
           sortedArrayTextBox.Text += " ";
         }
       }
+    }
 
-      // BOGO сортировка
-      List<double> bogoSortList = new List<double>();
-      Stopwatch bogoStopWatch = new Stopwatch();
-      if (checkBoxBOGO.Checked)
+    static bool IsCorrect (List<double> array, int size)
+    {
+      while (--size > 0)
       {
-
+        if (array[size - 1] > array[size]) return true;
       }
+
+      return false;
+    }
+
+    static void Shuffle(List<double> array, int size)
+    {
+      double temporaryValue;
+      int indexOfTemporaryValue;
+      Random random = new Random();
+
+      for (int index = 0; index < size; index++)
+      {
+        int randomIndex = GetRandomIndex(array.Count);
+
+        temporaryValue = array[index];
+        array[index] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+        
+      }
+    }
+
+    static int GetRandomIndex(int count)
+    {
+      Random random = new Random();
+
+      int randomIndex = random.Next(0, count);
+
+      return randomIndex;
+    }
+
+    static bool IsSorted(List<double> array)
+    {
+      for (int i = 0; i < array.Count - 1; i++)
+      {
+        if (array[i] > array[i + 1])
+        {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    static double FindMaxValue(List<double> list)
+    {
+      double maxValue = list[0];
+
+      for (int i = 1; i < list.Count; i++)
+      {
+        if (list[i] > maxValue)
+        {
+          maxValue = list[i];
+        }
+      }
+
+      return maxValue;
+    }
+
+    static double FindMinValue(List<double> list)
+    {
+      double minValue = list[0];
+
+      for (int i = 1; i < list.Count; i++)
+      {
+        if (list[i] < minValue)
+        {
+          minValue = list[i];
+        }
+      }
+
+      return minValue;
     }
 
     private static void QuickSort(List<double> list, int left, int right)
