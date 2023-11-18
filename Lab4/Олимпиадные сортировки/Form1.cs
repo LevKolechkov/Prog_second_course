@@ -65,8 +65,6 @@ namespace Олимпиадные_сортировки
 
     private void buttonLoadExcel_Click(object sender, EventArgs e)
     {
-      try
-      {
         string PathConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + textBoxWayToFile.Text + ";Extended Properties='Excel 12.0;IMEX=1;'";
         OleDbConnection conn = new OleDbConnection(PathConn);
 
@@ -76,11 +74,6 @@ namespace Олимпиадные_сортировки
         myDataAdapter.Fill(dt);
 
         dataGridViewOfArray.DataSource = dt;
-      }
-      catch (Exception ex)
-      {
-        MessageBox.Show("Данной таблицы или листа не существует");
-      }
 
     }
 
