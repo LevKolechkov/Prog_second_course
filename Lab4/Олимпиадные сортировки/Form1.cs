@@ -87,6 +87,12 @@ namespace Олимпиадные_сортировки
       chart1.Series[3].Points.Clear();
       chart1.Series[4].Points.Clear();
 
+      int bubbleIterations = 0;
+      int insertIterations = 0;
+      int shakerIterations = 0;
+      int quickIterations = 0;
+      int bogoIterations = 0;
+
       int totalChecked = 0;
 
       List<double> originalList = new List<double>();
@@ -117,6 +123,7 @@ namespace Олимпиадные_сортировки
         bogoStopWatch.Start();
         while (IsCorrect(bogoSortList, bogoSortList.Count))
         {
+          ++bogoIterations; 
           Shuffle(bogoSortList, bogoSortList.Count);
         }
         bogoStopWatch.Stop();
@@ -141,6 +148,7 @@ namespace Олимпиадные_сортировки
         bool swapped;
         do
         {
+          ++bubbleIterations;
           swapped = false;
           for (int index = 1; index < bubbleSortList.Count; ++index)
           {
@@ -174,6 +182,8 @@ namespace Олимпиадные_сортировки
 
         for (int index = 1; index < insertSortList.Count; ++index)
         {
+          ++insertIterations;
+
           double currentElement = insertSortList[index];
           int lastIndex = index - 1;
 
@@ -207,6 +217,8 @@ namespace Олимпиадные_сортировки
         bool swapped;
         do
         {
+          ++shakerIterations;
+
           swapped = false;
           for (int index = 0; index < shakerSortList.Count - 1; ++index)
           {
@@ -249,7 +261,7 @@ namespace Олимпиадные_сортировки
       { 
         fastSortList.AddRange(originalList);
         fastStopWatch.Start();
-        QuickSort(fastSortList, 0, fastSortList.Count - 1);
+        QuickSort(fastSortList, 0, fastSortList.Count - 1, ref quickIterations);
         fastStopWatch.Stop();
 
         sortedArrayTextBox.Clear();
@@ -260,6 +272,12 @@ namespace Олимпиадные_сортировки
           sortedArrayTextBox.Text += " ";
         }
       } 
+
+      iterationsOfBubbbleTextBox.Text = bubbleIterations.ToString();
+      iterationsOfInsertTextBox.Text = insertIterations.ToString();
+      iterationsOfShakerTextBox.Text = shakerIterations.ToString();
+      iterationsOfQuickTextBox.Text = quickIterations.ToString();
+      iterationsOfBogoTextBox.Text = bogoIterations.ToString();
 
       chart1.Series[0].Points.AddXY(1, (bubbleStopWatch.Elapsed.TotalMilliseconds));
       chart1.Series[1].Points.AddXY(2, (insertStopWatch.Elapsed.TotalMilliseconds));
@@ -316,50 +334,22 @@ namespace Олимпиадные_сортировки
       return true;
     }
 
-    static double FindMaxValue(List<double> list)
+    private static void QuickSort(List<double> list, int left, int right, ref int quickIterartions)
     {
-      double maxValue = list[0];
+      ++quickIterartions;
 
-      for (int i = 1; i < list.Count; i++)
-      {
-        if (list[i] > maxValue)
-        {
-          maxValue = list[i];
-        }
-      }
-
-      return maxValue;
-    }
-
-    static double FindMinValue(List<double> list)
-    {
-      double minValue = list[0];
-
-      for (int i = 1; i < list.Count; i++)
-      {
-        if (list[i] < minValue)
-        {
-          minValue = list[i];
-        }
-      }
-
-      return minValue;
-    }
-
-    private static void QuickSort(List<double> list, int left, int right)
-    {
       if (left < right)
       {
         int pivotIndex = Partition(list, left, right);
 
         if (pivotIndex > 1)
         {
-          QuickSort(list, left, pivotIndex - 1);
+          QuickSort(list, left, pivotIndex - 1, ref quickIterartions);
         }
 
         if (pivotIndex + 1 < right)
         {
-          QuickSort(list, pivotIndex + 1, right);
+          QuickSort(list, pivotIndex + 1, right, ref quickIterartions);
         }
       }
     }
