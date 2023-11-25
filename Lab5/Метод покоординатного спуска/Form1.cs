@@ -78,28 +78,56 @@ namespace Метод_покоординатного_спуска
         return;
       }
 
-      double numberOfMin = CoordinateDescent(intervalA, intervalB, accuracy);
-      string resultOfCoordDesc;
+      double[] arrayOfMinFun = MinCoordinateDescent(intervalA, intervalB, accuracy);
+      string resultOfMinCoordDesc, xOfMinCoordDesc, yOfMinCoordDesc;
 
-      if (!numberOfMin.Equals(double.NaN))
+      if (!arrayOfMinFun[0].Equals(double.NaN))
       {
-        resultOfCoordDesc = numberOfMin.ToString();
+        resultOfMinCoordDesc = arrayOfMinFun[0].ToString();
+        xOfMinCoordDesc = arrayOfMinFun[1].ToString();
+        yOfMinCoordDesc = arrayOfMinFun[2].ToString();
+
+        textBoxFunMin.Text = resultOfMinCoordDesc;
+        textBoxXMin.Text = xOfMinCoordDesc; 
+        textBoxYMin.Text = yOfMinCoordDesc;
       }
       else
       {
-        resultOfCoordDesc = "Нет точки минимума на заданном интервале";
+        resultOfMinCoordDesc = "Нет точки минимума на заданном интервале";
+        MessageBox.Show(resultOfMinCoordDesc);
       }
 
-      textBoxMin.Text = resultOfCoordDesc;
+      double[] arrayOfMaxFun = MaxCoordinateDescent(intervalA, intervalB, accuracy);
+      string resultOfMaxCoordDesc, xOfMaxCoordDesc, yOfMaxCoordDesc;
+
+      if (!arrayOfMaxFun[0].Equals(double.NaN))
+      {
+        resultOfMaxCoordDesc = arrayOfMaxFun[0].ToString();
+        xOfMaxCoordDesc = arrayOfMaxFun[1].ToString();
+        yOfMaxCoordDesc = arrayOfMaxFun[2].ToString();
+
+        textBoxFunMax.Text = resultOfMinCoordDesc;
+        textBoxXMax.Text = xOfMaxCoordDesc;
+        textBoxYMax.Text = yOfMaxCoordDesc;
+      }
+      else
+      {
+        resultOfMinCoordDesc = "Нет точки минимума на заданном интервале";
+        MessageBox.Show(resultOfMinCoordDesc);
+      }
 
       CreateChart(intervalA, intervalB, accuracy);
     }
 
-    public double GetXWhereDirectionChanges(ref double x, ref double y, double delta, double a, double b, double pastResultOfFunc, double accuracy)
+    public double GetXWhereDirectionChanges(Func<double, double,double> MainFunc,ref double x, ref double y, double delta, double a, double b, double pastResultOfFunc, double accuracy)
     {
       double resultOfFunction = MainFunc(x, y);
 
-      if (x.ToString().Length - x.ToString().IndexOf('.') - x.ToString().IndexOf('-') - 1 > accuracy)
+      int lengthOfX = x.ToString().Length;
+      int indexOfDotOfX = x.ToString().IndexOf(',');
+      int indexOfMinusOfX = x.ToString().IndexOf('-') == -1 ? 0 : x.ToString().IndexOf('-');
+
+      if (lengthOfX - indexOfDotOfX - indexOfMinusOfX - 1 > accuracy)
       {
         return double.NaN;
       }
@@ -111,11 +139,11 @@ namespace Метод_покоординатного_спуска
       else
       {
         x += delta;
-        return GetXWhereDirectionChanges (ref x, ref y, delta ,a, b, pastResultOfFunc, accuracy);
+        return GetXWhereDirectionChanges (MainFunc, ref x, ref y, delta ,a, b, pastResultOfFunc, accuracy);
       }
     }
 
-    public double GetYWhereDirectionChanges(ref double x, ref double y, double delta, double a, double b, double pastResultOfFunc, double accuracy)
+    public double GetYWhereDirectionChanges(Func<double, double, double> MainFunc, ref double x, ref double y, double delta, double a, double b, double pastResultOfFunc, double accuracy)
     {
       double resultOfFunction = MainFunc(x, y);
 
@@ -131,12 +159,14 @@ namespace Метод_покоординатного_спуска
       else
       {
         y += delta;
-        return GetYWhereDirectionChanges(ref x, ref y, delta, a, b, pastResultOfFunc, accuracy);
+        return GetYWhereDirectionChanges(MainFunc, ref x, ref y, delta, a, b, pastResultOfFunc, accuracy);
       }
     }
 
-    public double CoordinateDescent(double interval1, double interval2, int accuracy)
+    public double[] MinCoordinateDescent(double interval1, double interval2, int accuracy)
     {
+      double[] toReturnValues = new double[3];
+
       double a = interval1;
       double b = interval2;
 
@@ -145,12 +175,15 @@ namespace Метод_покоординатного_спуска
       double delta = Math.Pow(10, -accuracy);
 
       double pastResultOfFunc = MainFunc(x, y);
-      x += delta;
+      x = Math.Round(x + delta, accuracy);
 
-      while (x < b || y < b)
+      while (x < b)
       {
-        GetXWhereDirectionChanges(ref x, ref y, delta, a, b, pastResultOfFunc, accuracy);
-        GetYWhereDirectionChanges(ref x, ref y, delta, a, b, pastResultOfFunc, accuracy);
+        x = Math.Round(x, accuracy);
+        y = Math.Round(y, accuracy);
+
+        GetXWhereDirectionChanges(MainFunc, ref x, ref y, delta, a, b, pastResultOfFunc, accuracy);
+        GetYWhereDirectionChanges(MainFunc, ref x, ref y, delta, a, b, pastResultOfFunc, accuracy);
         
         if (x != double.NaN && y != double.NaN)
         {
@@ -158,24 +191,67 @@ namespace Метод_покоординатного_спуска
         }
         else
         {
-          return pastResultOfFunc;
+          toReturnValues[0] = pastResultOfFunc;
         }
       }
 
-      return pastResultOfFunc;
+      toReturnValues[1] = x; 
+      toReturnValues[2] = y;
+
+      return toReturnValues;
+    }
+
+    public double[] MaxCoordinateDescent(double interval1, double interval2, int accuracy)
+    {
+      double[] toReturnValues = new double[3];
+
+      double a = interval1;
+      double b = interval2;
+
+      double x = a;
+      double y = a;
+      double delta = Math.Pow(10, -accuracy);
+
+      double pastResultOfFunc = ReverseMainFunc(x, y);
+      x = Math.Round(x + delta, accuracy);
+
+      while (x < b)
+      {
+        x = Math.Round(x, accuracy);
+        y = Math.Round(y, accuracy);
+
+        GetXWhereDirectionChanges(ReverseMainFunc, ref x, ref y, delta, a, b, pastResultOfFunc, accuracy);
+        GetYWhereDirectionChanges(ReverseMainFunc, ref x, ref y, delta, a, b, pastResultOfFunc, accuracy);
+
+        if (x != double.NaN && y != double.NaN)
+        {
+          pastResultOfFunc = ReverseMainFunc(x, y);
+        }
+        else
+        {
+          toReturnValues[0] = pastResultOfFunc;
+        }
+      }
+
+      toReturnValues[1] = x;
+      toReturnValues[2] = y;
+
+      return toReturnValues;
     }
 
     private void CreateChart(double a, double b, double accuracy)
     {
-      double intervalA = a, intervalB = b, step = 1, x, y, z;
+      double step = Math.Pow(10, -accuracy);
+      double x, y;
       this.chart.Series[0].Points.Clear();
       x = a;
       y = a;
-      while (x <= b)
+      while (y <= b && x <= b)
       {
-        z = Math.Round(MainFunc(x, y), Byte.Parse(accuracy.ToString()));
-        this.chart.Series[0].Points.AddXY(x, z);
+        double resultOfFunc = MainFunc(x, y);
+        this.chart.Series[0].Points.AddXY(x, resultOfFunc);
         x += step;
+        y += step;
       }
     }
   }
